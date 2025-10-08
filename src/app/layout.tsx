@@ -7,6 +7,7 @@ import Banner from "./components/banner"
 import EdutecHero from "./components/herosection";
 import ContactForm from "./components/ContactForm";
 import Testimonials from "./components/testmonial";
+import BottomUpper from "./components/bottomupper";
 
 
 
@@ -39,6 +40,7 @@ export default function RootLayout({
         <Banner/>
         <EdutecHero />
         {children}
+        <BottomUpper/>
         <Testimonials/>
         <ContactForm/>
         <Footer />

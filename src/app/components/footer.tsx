@@ -29,11 +29,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Cursos</h4>
             <ul className="space-y-2 text-green-100">
-              <li><a href="#" className="hover:text-white transition-colors">Programação</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Data Science</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Design UX/UI</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Cloud Computing</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Cybersecurity</a></li>
+              <li>Técnico em Agricultura</li>
+              <li>Técnico em Enfermagem</li>
+              <li>Técnico em Eletromecânica</li>
+              <li>Técnico em Transação Imobiliária </li>
+              
             </ul>
           </div>
 

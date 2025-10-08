@@ -1,34 +1,42 @@
 'use client'
 import { useState, useEffect } from 'react'
+// Importa o componente Image do Next.js para otimização
+import Image from 'next/image'
 
+// --- Estrutura de Dados Corrigida ---
 const carouselSlides = [
     {
         id: 1,
-        title: "Programação & Desenvolvimento",
-        description: "Domine as tecnologias mais demandadas do mercado com projetos reais e mentoria especializada.",
-        icon: "💻",
-        stats: "95% de empregabilidade"
+        title: "Técnico em Enfermagem",
+        description: "Prepare-se para atuar na área da saúde, oferecendo cuidados essenciais e promovendo o bem-estar dos pacientes.",
+        icon: "🏥",
+        stats: "Alta demanda profissional",
+        // Caminho da imagem (assumindo que está em /public/tecnicoenfermagem.webp)
+        imagePath: "/tecnicoenfermagem.webp"
     },
     {
         id: 2,
-        title: "Data Science & Inteligência Artificial",
-        description: "Aprenda machine learning, análise de dados e IA com cases de empresas reais.",
-        icon: "🤖",
-        stats: "Salário médio: R$ 8.500"
+        title: "Técnico Eletromecânica",
+        description: "Una conhecimentos de eletricidade e mecânica para projetar e manter sistemas industriais complexos.",
+        icon: "⚙️",
+        stats: "Salário competitivo na indústria",
+        imagePath: "/tecnicoeletromecanica.webp"
     },
     {
         id: 3,
-        title: "Design UX/UI & Product Design",
-        description: "Crie experiências digitais incríveis e interfaces que encantam usuários.",
-        icon: "🎨",
-        stats: "100% dos alunos atuando"
+        title: "Técnico em Transação Imobiliária (TTI)",
+        description: "Obtenha a formação necessária para atuar como corretor de imóveis, intermediando compras, vendas e aluguéis.",
+        icon: "🏠",
+        stats: "Seja um corretor credenciado",
+        imagePath: "/tecnicotrasacaoimobiliaria.webp"
     },
     {
         id: 4,
-        title: "Cloud Computing & DevOps",
-        description: "Especialize-se em infraestrutura cloud e metodologias ágeis de desenvolvimento.",
-        icon: "☁️",
-        stats: "Certificação internacional"
+        title: "Técnico em Agricultura",
+        description: "Aprenda sobre gestão de recursos agrícolas, sustentabilidade e tecnologias modernas para o agronegócio.",
+        icon: "🚜",
+        stats: "Foco no Agronegócio 4.0",
+        imagePath: "/tecnicoagricultura.webp"
     }
 ]
 
@@ -43,15 +51,15 @@ export default function HeroSection() {
     }, [])
 
     return (
-        <div  className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-green-100">
+        <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-green-100">
             {/* Banner Hero */}
             <div className="relative bg-gradient-to-r from-green-600 to-blue-800 text-white">
                 <div className="container mx-auto px-4 py-12">
                     <div className="flex flex-col lg:flex-row items-center justify-between">
                         <div className="lg:w-1/2 mb-6 lg:mb-0">
                             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                                Sua carreira em
-                                <span className="text-green-300 block">Tecnologia</span>
+                                Transforme seu futuro com
+                                <span className="text-green-300 block">Educação Técnica</span>
                             </h1>
 
                             <p className="text-lg md:text-xl text-green-100">
@@ -89,7 +97,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Wave divider menor */}
-                <div className="absolute bottom-0 left-0 right-0">
+                <div id='sobre' className="absolute bottom-0 left-0 right-0">
                     <svg viewBox="0 0 1200 60" preserveAspectRatio="none" className="w-full h-8">
                         <path d="M0,0V30c120-30,240-30,360-10s240,40,360,40s240-30,360-40s240,10,360,10V0Z" className="fill-white"></path>
                     </svg>
@@ -97,7 +105,7 @@ export default function HeroSection() {
             </div>
 
             {/* About Us Compact - Espaçamento ajustado */}
-            <section id='sobre' className="py-12 bg-white">
+            <section className="py-12 bg-white">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-8">
                         <h2 className="text-3xl md:text-4xl font-bold text-green-700 mb-4">
@@ -105,8 +113,8 @@ export default function HeroSection() {
                         </h2>
                         <div className="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            Há mais de 15 anos somos referência em educação tecnológica, formando profissionais
-                            que estão transformando o mercado digital brasileiro.
+                            Há mais de 15 anos somos referência em educação técnica e profissional, formando profissionais
+                            que estão transformando o mercado de trabalho brasileiro.
                         </p>
                     </div>
 
@@ -151,13 +159,13 @@ export default function HeroSection() {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="relative">
+                            <div className="relative left-4">
                                 <img
-                                    src="/api/placeholder/500/300"
+                                    src="/banner.webp"
                                     alt="Metodologia Edutec"
                                     className="rounded-lg shadow-lg"
                                 />
-                                <div className="absolute -bottom-2 -right-2 bg-green-600 text-white p-3 rounded-lg shadow-lg">
+                                <div className="absolute -bottom-2 left-145 bg-green-600 text-white p-3 rounded-lg shadow-lg">
                                     <div className="font-bold text-sm">Educação que</div>
                                     <div className="font-bold text-sm">transforma!</div>
                                 </div>
@@ -168,47 +176,52 @@ export default function HeroSection() {
             </section>
 
             {/* Carousel Compact */}
-            <section className="py-12 bg-gradient-to-br from-blue-50 to-green-50">
+            <section className="py-16 bg-gradient-to-br from-blue-50 to-green-50">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-8">
-                        <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4">
-                            Nossas Áreas de Especialização
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl md:text-5xl font-bold text-blue-800 mb-4">
+                            Nossos Cursos Técnicos
                         </h2>
-                        <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-                            Conheça as trilhas de aprendizado que vão acelerar sua carreira em tecnologia
+                        <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+                            Conheça as formações que vão acelerar sua entrada no mercado de trabalho
                         </p>
                     </div>
 
-                    <div className="relative max-w-6xl mx-auto">
-                        <div className="overflow-hidden rounded-xl shadow-xl">
+                    <div className="relative max-w-7xl mx-auto">
+                        <div className="overflow-hidden rounded-2xl shadow-2xl">
                             <div
                                 className="flex transition-transform duration-500 ease-in-out"
                                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                             >
                                 {carouselSlides.map((slide) => (
                                     <div key={slide.id} className="w-full flex-shrink-0">
-                                        <div className="bg-white p-6 md:p-8">
-                                            <div className="grid lg:grid-cols-2 gap-6 items-center">
+                                        <div className="bg-white p-8 md:p-12">
+                                            <div className="grid lg:grid-cols-2 gap-8 items-center">
                                                 <div>
-                                                    <div className="text-5xl mb-4">{slide.icon}</div>
-                                                    <h3 className="text-xl md:text-2xl font-bold text-green-700 mb-3">
+                                                    <div className="text-6xl mb-6">{slide.icon}</div>
+                                                    <h3 className="text-2xl md:text-3xl font-bold text-green-700 mb-4">
                                                         {slide.title}
                                                     </h3>
-                                                    <p className="text-gray-700 mb-4 leading-relaxed">
+                                                    <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                                                         {slide.description}
                                                     </p>
-                                                    <div className="bg-green-100 border border-green-200 rounded-lg p-3 inline-block mb-3">
-                                                        <span className="text-green-800 font-semibold">
+                                                    <div className="bg-green-100 border border-green-200 rounded-lg p-4 inline-block">
+                                                        <span className="text-green-800 font-semibold text-lg">
                                                             {slide.stats}
                                                         </span>
                                                     </div>
-                                                   
                                                 </div>
-                                                <div className="relative">
-                                                    <img
-                                                        src={`/api/placeholder/600/400?text=${slide.title}`}
+                                                <div className="relative h-80 w-full">
+                                                    {/* CORREÇÃO AQUI: Usando o componente Image do Next.js */}
+                                                    <Image
+                                                        src={slide.imagePath}
                                                         alt={slide.title}
-                                                        className="rounded-lg shadow-lg w-full"
+                                                        // Necessário definir width e height para o Next/Image
+                                                        // Se você quiser que o Image se comporte como um <div> (para o object-cover), 
+                                                        // use layout="fill" e defina a classe "h-80 w-full" no div pai.
+                                                        layout="fill"
+                                                        objectFit="cover" // Garante que a imagem preencha o espaço
+                                                        className="rounded-lg shadow-lg"
                                                     />
                                                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
                                                 </div>
@@ -219,33 +232,34 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        {/* Navigation */}
-                        <div className="flex justify-center mt-6 space-x-3">
+                        {/* Navigation - Setas posicionadas fora do conteúdo */}
+                        <button
+                            onClick={() => setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length)}
+                            aria-label="Slide anterior"
+                            className="absolute -left-4 md:-left-8 top-1/2 transform -translate-y-1/2 bg-white hover:bg-gray-50 text-gray-800 w-12 h-12 md:w-14 md:h-14 rounded-full shadow-xl flex items-center justify-center transition-all border border-gray-200"
+                        >
+                            <span className="text-2xl">‹</span>
+                        </button>
+                        <button
+                            onClick={() => setCurrentSlide((prev) => (prev + 1) % carouselSlides.length)}
+                            aria-label="Próximo slide"
+                            className="absolute -right-4 md:-right-8 top-1/2 transform -translate-y-1/2 bg-white hover:bg-gray-50 text-gray-800 w-12 h-12 md:w-14 md:h-14 rounded-full shadow-xl flex items-center justify-center transition-all border border-gray-200"
+                        >
+                            <span className="text-2xl">›</span>
+                        </button>
+
+                        {/* Indicadores */}
+                        <div className="flex justify-center mt-8 space-x-3">
                             {carouselSlides.map((_, index) => (
                                 <button
                                     key={index}
                                     onClick={() => setCurrentSlide(index)}
                                     aria-label={`Ir para o slide ${index + 1}`}
-                                    className={`w-10 h-2 rounded-full transition-all ${index === currentSlide ? 'bg-blue-600' : 'bg-gray-300'
+                                    className={`w-4 h-4 rounded-full transition-all ${index === currentSlide ? 'bg-blue-600' : 'bg-gray-300'
                                         }`}
                                 />
                             ))}
                         </div>
-
-                        <button
-                            onClick={() => setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length)}
-                            aria-label="Slide anterior"
-                            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all"
-                        >
-                            ‹
-                        </button>
-                        <button
-                            onClick={() => setCurrentSlide((prev) => (prev + 1) % carouselSlides.length)}
-                            aria-label="Próximo slide"
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-all"
-                        >
-                            ›
-                        </button>
                     </div>
                 </div>
             </section>

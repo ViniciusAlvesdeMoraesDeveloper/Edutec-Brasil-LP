@@ -1,66 +1,67 @@
 'use client'
 import { useState, useEffect } from 'react'
+// Não precisa importar Image, pois você não o está usando aqui (está usando apenas o placeholder)
 
 const testimonials = [
     {
         id: 1,
-        name: "Maria Silva",
-        role: "Desenvolvedora Front-end",
-        company: "Tech Solutions",
+        name: "Beatriz Oliveira",
+        role: "Técnica em Enfermagem",
+        company: "Hospital Santa Maria",
         avatar: "/api/placeholder/100/100",
-        content: "A Edutec transformou minha carreira. Em 6 meses já estava atuando como desenvolvedora júnior. A metodologia prática fez toda a diferença!",
+        content: "O curso de Enfermagem me deu a confiança e a prática que eu precisava. A parte laboratorial é excelente. Consegui meu primeiro emprego logo após o estágio!",
         rating: 5,
-        course: "Programação Full Stack"
+        course: "Técnico em Enfermagem"
     },
     {
         id: 2,
-        name: "João Santos",
-        role: "Cientista de Dados",
-        company: "Data Analytics Co.",
+        name: "Carlos Eduardo Silva",
+        role: "Técnico Eletromecânica",
+        company: "Indústria Metalúrgica Alfa",
         avatar: "/api/placeholder/100/100",
-        content: "O curso de Data Science superou minhas expectativas. Os projetos reais me prepararam perfeitamente para o mercado de trabalho.",
+        content: "A Edutec me preparou para o chão de fábrica. O módulo de automação foi crucial. Agora sou responsável pela manutenção preventiva na minha empresa.",
         rating: 5,
-        course: "Data Science & IA"
+        course: "Técnico Eletromecânica"
     },
     {
         id: 3,
-        name: "Ana Costa",
-        role: "Product Designer",
-        company: "Design Innovation",
+        name: "Mariana Costa",
+        role: "Corretora de Imóveis",
+        company: "Imobiliária Prime",
         avatar: "/api/placeholder/100/100",
-        content: "A mentoria individual foi fundamental para meu desenvolvimento. Hoje trabalho em uma das maiores empresas de tecnologia do país.",
-        rating: 5,
-        course: "UX/UI Design"
+        content: "O curso de TTI da Edutec foi rápido e direto ao ponto. Aprendi toda a legislação e marketing imobiliário necessário para tirar meu CRECI e começar a vender.",
+        rating: 4, 
+        course: "Transação Imobiliária (TTI)"
     },
     {
         id: 4,
-        name: "Pedro Oliveira",
-        role: "DevOps Engineer",
-        company: "Cloud Systems",
+        name: "Antônio Pires",
+        role: "Consultor Agrícola",
+        company: "Fazenda Progresso",
         avatar: "/api/placeholder/100/100",
-        content: "A certificação da Edutec é reconhecida no mercado. Consegui minha vaga antes mesmo de terminar o curso!",
+        content: "O foco em agricultura de precisão e gestão de culturas fez toda a diferença. Apliquei os conhecimentos na fazenda da família e já aumentamos a produtividade em 20%.",
         rating: 5,
-        course: "Cloud Computing"
+        course: "Técnico em Agricultura"
     },
     {
         id: 5,
-        name: "Carla Rodrigues",
-        role: "Mobile Developer",
-        company: "App Masters",
+        name: "Juliana Rocha",
+        role: "Auxiliar de Enfermagem",
+        company: "Clínica Vida Nova",
         avatar: "/api/placeholder/100/100",
-        content: "Do zero ao profissional em menos de 1 ano. A Edutec me deu toda base técnica e confiança que precisava.",
+        content: "Professores muito atenciosos e aulas práticas de verdade. Recomendo para quem busca uma formação sólida e rápida para entrar no mercado de saúde.",
         rating: 5,
-        course: "Desenvolvimento Mobile"
+        course: "Técnico em Enfermagem"
     },
     {
         id: 6,
-        name: "Ricardo Lima",
-        role: "Full Stack Developer",
-        company: "Digital Transform",
+        name: "Guilherme Santos",
+        role: "Corretor Autônomo",
+        company: "Creci-MG",
         avatar: "/api/placeholder/100/100",
-        content: "Investi na minha educação com a Edutec e foi a melhor decisão da minha carreira. Salário triplicou em 1 ano!",
-        rating: 5,
-        course: "Programação Avançada"
+        content: "O material didático do TTI é excelente. Consegui conciliar o estudo com o trabalho e, em pouco tempo, já estava com minha carteira de imóveis.",
+        rating: 4,
+        course: "Transação Imobiliária (TTI)"
     }
 ]
 
@@ -76,7 +77,7 @@ export default function Testimonials() {
 
     const visibleTestimonials = testimonials.slice(currentTestimonial, currentTestimonial + 3)
     
-    // Garante que sempre mostre 3 depoimentos
+    // Garante que sempre mostre 3 depoimentos (lógica de carrossel contínuo)
     if (visibleTestimonials.length < 3) {
         visibleTestimonials.push(...testimonials.slice(0, 3 - visibleTestimonials.length))
     }
@@ -96,13 +97,15 @@ export default function Testimonials() {
 
                 {/* Grid de Depoimentos */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    {visibleTestimonials.map((testimonial, index) => (
+                    {visibleTestimonials.map((testimonial) => ( // Removido o 'index' não utilizado
                         <div 
                             key={testimonial.id}
                             className="bg-white rounded-2xl shadow-lg p-6 border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                         >
                             {/* Header do Depoimento */}
                             <div className="flex items-center mb-4">
+                                {/* Aqui você usaria o componente Image do Next.js se tivesse a foto, 
+                                mas o placeholder está mantido para funcionar */}
                                 <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
                                     {testimonial.name.charAt(0)}
                                 </div>
@@ -115,14 +118,19 @@ export default function Testimonials() {
 
                             {/* Rating */}
                             <div className="flex mb-4">
-                                {[...Array(5)].map((_, i) => (
+                                {/* Aqui, o índice '_' é ignorado corretamente */}
+                                {[...Array(testimonial.rating)].map((_, i) => (
                                     <span key={i} className="text-yellow-400 text-lg">⭐</span>
+                                ))}
+                                {/* Adiciona estrelas vazias se o rating for menor que 5 */}
+                                {[...Array(5 - testimonial.rating)].map((_, i) => (
+                                    <span key={i + testimonial.rating} className="text-gray-300 text-lg">⭐</span>
                                 ))}
                             </div>
 
-                            {/* Conteúdo do Depoimento */}
+                            {/* Conteúdo do Depoimento - CORREÇÃO APLICADA AQUI */}
                             <p className="text-gray-700 mb-4 leading-relaxed">
-                                "{testimonial.content}"
+                                {testimonial.content} 
                             </p>
 
                             {/* Curso */}

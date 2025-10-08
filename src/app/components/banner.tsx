@@ -66,13 +66,14 @@ export default function Banner() {
         </div>
       </div>
 
-      {/* Elementos decorativos flutuantes */}
-      <div className="absolute top-20 right-20 bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg font-bold text-lg rotate-6 shadow-xl animate-bounce">
+      {/* Elementos decorativos flutuantes - POSIÇÕES AJUSTADAS */}
+      <div className="absolute top-10 right-10 bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg font-bold text-lg rotate-6 shadow-xl animate-bounce">
         ⭐ Melhor Avaliada
       </div>
-      <div className="absolute bottom-20 left-20 bg-green-500 text-white px-4 py-2 rounded-lg font-bold text-lg -rotate-6 shadow-xl animate-pulse">
-        🎓 95% Empregabilidade
+      <div className="absolute bottom-10 right-10 bg-green-500 text-white px-4 py-2 rounded-lg font-bold text-lg -rotate-6 shadow-xl animate-pulse">
+        🎓 10K+ Alunos
       </div>
     </div>
   )
 }
+  
