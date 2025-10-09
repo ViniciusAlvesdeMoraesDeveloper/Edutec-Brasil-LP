@@ -76,7 +76,7 @@ export default function ContactForm() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="nome" className="block text-shadow-lime-700 font-medium text-gray-700 mb-2">
                     Nome Completo *
                   </label>
                   <input
@@ -86,7 +86,7 @@ export default function ContactForm() {
                     value={formData.nome}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-black"
                     placeholder="Seu nome completo"
                   />
                 </div>
@@ -102,7 +102,7 @@ export default function ContactForm() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-black"
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -119,7 +119,7 @@ export default function ContactForm() {
                   value={formData.telefone}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-black"
                   placeholder="(11) 99999-9999"
                 />
               </div>

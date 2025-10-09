@@ -1,3 +1,9 @@
+import Link from "next/link"
+import { Youtube } from "lucide-react"
+import { Instagram } from "lucide-react"
+import { Music2 } from "lucide-react"
+
+
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-green-800 to-blue-900 text-white">
@@ -12,16 +18,23 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <div className="bg-white/10 p-2 rounded-lg">
-                📍
+                <Link href={"https://www.instagram.com/edutec_brasil/"} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <Instagram className="text-green-100" />
+                </Link>
               </div>
               <div className="bg-white/10 p-2 rounded-lg">
-                📱
+                <Link href="https://www.tiktok.com/@edutec_brasil"
+                target="blank" rel="noopeener noreferrer"
+                aria-label="TikTok">
+                  <Music2 className="text-green-100" />
+                </Link>
               </div>
               <div className="bg-white/10 p-2 rounded-lg">
-                💼
-              </div>
-              <div className="bg-white/10 p-2 rounded-lg">
-                🎓
+                <Link href="https://www.youtube.com/@EduTecBrasil"
+                target="blank" rel="noopener noreferrer"
+                aria-label="Youtube">
+                  <Youtube className="text-green-100" />
+                </Link>
               </div>
             </div>
           </div>
@@ -33,7 +46,7 @@ export default function Footer() {
               <li>Técnico em Enfermagem</li>
               <li>Técnico em Eletromecânica</li>
               <li>Técnico em Transação Imobiliária </li>
-              
+
             </ul>
           </div>
 
@@ -42,7 +55,7 @@ export default function Footer() {
             <ul className="space-y-2 text-green-100">
               <li className="flex items-center">
                 <span className="mr-2">📞</span>
-                (11) 4002-8922
+                (31) 98262-8327
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📧</span>

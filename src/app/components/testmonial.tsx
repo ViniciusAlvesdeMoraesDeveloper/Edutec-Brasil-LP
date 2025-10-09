@@ -162,7 +162,7 @@ export default function Testimonials() {
                     <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto border border-blue-100">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="text-center">
-                                <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">4.9/5</div>
+                                <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">5</div>
                                 <div className="text-gray-600">Avaliação média</div>
                             </div>
                             <div className="text-center">

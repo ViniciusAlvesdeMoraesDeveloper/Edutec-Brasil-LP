@@ -183,7 +183,7 @@ export default function HeroSection() {
                             Nossos Cursos Técnicos
                         </h2>
                         <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-                            Conheça as formações que vão acelerar sua entrada no mercado de trabalho
+                            Conheça as formações que vão acelerar sua entrada no mercado de trabalho, são mais de 60 cursos para você, veja alguns dos mais procurados:
                         </p>
                     </div>
 
