@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+// Importações dos Componentes Estruturais (Mantidos)
 import TopBar from "./components/topbar";
-import Footer from "./components/footer"
-import Banner from "./components/banner"
-import EdutecHero from "./components/herosection";
-import ContactForm from "./components/ContactForm";
-import Testimonials from "./components/testmonial";
-import BottomUpper from "./components/bottomupper";
+import Footer from "./components/footer";
 
-
-
+// Importações de Conteúdo Específico (Removidas/Comentadas)
+// import Banner from "./components/banner" 
+// import EdutecHero from "./components/herosection";
+// import ContactForm from "./components/ContactForm";
+// import Testimonials from "./components/testmonial";
+// import BottomUpper from "./components/bottomupper"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,17 +38,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        
         <TopBar />
-        <Banner />
-        <EdutecHero />
+
+        
         {children}
-        <BottomUpper />
-        <Testimonials />
-        <ContactForm />
+
+        
         <Footer />
       </body>
     </html>

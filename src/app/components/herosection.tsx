@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react'
-
 import Image from 'next/image'
 
 const carouselSlides = [
@@ -10,7 +9,6 @@ const carouselSlides = [
         description: "Prepare-se para atuar na área da saúde, oferecendo cuidados essenciais e promovendo o bem-estar dos pacientes.",
         icon: "🏥",
         stats: "Alta demanda profissional",
-        // Caminho da imagem (assumindo que está em /public/tecnicoenfermagem.webp)
         imagePath: "/tecnicoenfermagem.webp"
     },
     {
@@ -158,14 +156,21 @@ export default function HeroSection() {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="relative left-4">
-                                <Image
-                                    src="/banner.webp"
-                                    alt="Metodologia Edutec"
-                                    fill
-                                    className="rounded-lg shadow-lg"
-                                />
-                                <div className="absolute -bottom-2 left-145 bg-green-600 text-white p-3 rounded-lg shadow-lg">
+                            
+                            {/* AJUSTE CHAVE PARA MOBILE: flex-col e altura responsiva */}
+                            <div className="mt-8 md:mt-0 flex flex-col items-center">
+                                {/* Container da Imagem: Altura menor no mobile (h-48) e margin inferior */}
+                                <div className="relative w-full h-48 md:h-96 mb-6 rounded-lg shadow-lg"> 
+                                    <Image
+                                        src="/banner.webp"
+                                        alt="Metodologia Edutec"
+                                        fill
+                                        className="rounded-lg object-cover"
+                                    />
+                                </div>
+                                
+                                {/* Balão de Texto: Removido o posicionamento 'absolute' para que flua APÓS a imagem. */}
+                                <div className="bg-green-600 text-white p-3 rounded-lg shadow-lg w-fit">
                                     <div className="font-bold text-sm">Educação que</div>
                                     <div className="font-bold text-sm">transforma!</div>
                                 </div>
@@ -211,17 +216,13 @@ export default function HeroSection() {
                                                         </span>
                                                     </div>
                                                 </div>
+                                                
                                                 <div className="relative h-80 w-full">
-                                                    {/* CORREÇÃO AQUI: Usando o componente Image do Next.js */}
                                                     <Image
                                                         src={slide.imagePath}
                                                         alt={slide.title}
-                                                        // Necessário definir width e height para o Next/Image
-                                                        // Se você quiser que o Image se comporte como um <div> (para o object-cover), 
-                                                        // use layout="fill" e defina a classe "h-80 w-full" no div pai.
-                                                        layout="fill"
-                                                        objectFit="cover" // Garante que a imagem preencha o espaço
-                                                        className="rounded-lg shadow-lg"
+                                                        fill
+                                                        className="rounded-lg shadow-lg object-cover"
                                                     />
                                                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
                                                 </div>
