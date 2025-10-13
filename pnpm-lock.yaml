@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      edutec-brasil-lp:
+        specifier: 'link:'
+        version: 'link:'
       framer-motion:
         specifier: ^12.23.22
         version: 12.23.22(react-dom@19.1.0(react@19.1.0))(react@19.1.0)

@@ -7,11 +7,10 @@ import {
   UserPlus,
   ArrowRight,
   Star,
-  Shield,
-  MapPin,    // Ícone para "Nossos Polos"
-  Briefcase, // Ícone para "Sobre nós"
+  Shield,   
+  Briefcase, 
 } from "lucide-react";
-import Link from "next/link";
+
 
 // --- Funções de Ajuda ---
 

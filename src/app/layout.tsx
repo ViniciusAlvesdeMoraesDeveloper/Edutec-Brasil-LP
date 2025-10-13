@@ -8,7 +8,7 @@ import EdutecHero from "./components/herosection";
 import ContactForm from "./components/ContactForm";
 import Testimonials from "./components/testmonial";
 import BottomUpper from "./components/bottomupper";
-import Link from "next/link";
+
 
 
 

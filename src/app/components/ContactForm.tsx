@@ -36,9 +36,6 @@ export default function ContactForm() {
     }))
   }
 
-  const formatPhone = (phone: string) => {
-    return phone.replace(/\D/g, '')
-  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

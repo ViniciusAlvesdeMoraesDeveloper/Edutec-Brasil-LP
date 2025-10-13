@@ -1,9 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
-// Importa o componente Image do Next.js para otimização
+
 import Image from 'next/image'
 
-// --- Estrutura de Dados Corrigida ---
 const carouselSlides = [
     {
         id: 1,
@@ -160,9 +159,10 @@ export default function HeroSection() {
                                 </ul>
                             </div>
                             <div className="relative left-4">
-                                <img
+                                <Image
                                     src="/banner.webp"
                                     alt="Metodologia Edutec"
+                                    fill
                                     className="rounded-lg shadow-lg"
                                 />
                                 <div className="absolute -bottom-2 left-145 bg-green-600 text-white p-3 rounded-lg shadow-lg">
