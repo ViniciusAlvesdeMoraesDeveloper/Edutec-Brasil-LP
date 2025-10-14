@@ -7,7 +7,7 @@ interface FormData {
   telefone: string
 }
 
-// Para evitar problemas de TypeScript com a função global gtag, declare-a.
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
   interface Window {
     gtag: (...args: any[]) => void

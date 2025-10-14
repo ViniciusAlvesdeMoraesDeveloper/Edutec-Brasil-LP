@@ -1,5 +1,3 @@
-import TopBar from "./components/topbar";
-import Footer from "./components/footer"
 import Banner from "./components/banner"
 import EdutecHero from "./components/herosection";
 import ContactForm from "./components/ContactForm";
