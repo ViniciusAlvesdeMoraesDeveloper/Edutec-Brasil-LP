@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
-// Importações dos Componentes Estruturais (Mantidos)
+
 import TopBar from "./components/topbar";
 import Footer from "./components/footer";
 
-// Importações de Conteúdo Específico (Removidas/Comentadas)
-// import Banner from "./components/banner" 
-// import EdutecHero from "./components/herosection";
-// import ContactForm from "./components/ContactForm";
-// import Testimonials from "./components/testmonial";
-// import BottomUpper from "./components/bottomupper"; 
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,16 +34,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=AW-17611655398"
+      />
+      <Script
+        id="google-ads-config"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17611655398');
+          `,
+        }}
+      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        
         <TopBar />
-
-        
         {children}
-
-        
         <Footer />
       </body>
     </html>
