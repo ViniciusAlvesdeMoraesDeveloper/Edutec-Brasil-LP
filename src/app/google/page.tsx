@@ -5,3 +5,4 @@ export default function GooglePage() {
             <p>This is the Google page content.</p>
         </div>
     )
+}
