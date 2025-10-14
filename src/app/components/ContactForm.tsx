@@ -7,16 +7,23 @@ interface FormData {
   telefone: string
 }
 
+// Para evitar problemas de TypeScript com a função global gtag, declare-a.
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void
+  }
+}
+
 const whatsappNumbers = [
   '5531981008528',
   '5531981012568',
   '5531982654672',
   '5531982665400',
-  '5531982692321', 
+  '5531982692321',
   '5531973123670',
   '5531973123734',
   '5531982642835',
-  '5531982668947' 
+  '5531982668947'
 ]
 
 export default function ContactForm() {
@@ -37,22 +44,37 @@ export default function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    
+
+
+    // Você deve substituir 'AW-17611655398/XXXXX_XXXXXX' pelo ID e RÓTULO (label) 
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-17611655398/SEU_ROTULO_DE_CONVERSAO', // << MUDAR ESTE VALOR
+        'value': 1.0,
+        'currency': 'BRL',
+        'transaction_id': ''
+      });
+      console.log('Conversão do Google Ads enviada: AW-17611655398/SEU_ROTULO_DE_CONVERSAO');
+    }
+
+
     const randomNumber = whatsappNumbers[Math.floor(Math.random() * whatsappNumbers.length)]
     const message = `Olá! Me chamo ${formData.nome}. Gostaria de mais informações sobre os cursos da Edutec Brasil.\n\nEmail: ${formData.email}\nTelefone: ${formData.telefone}`
-    
+
     const encodedMessage = encodeURIComponent(message)
     const whatsappUrl = `https://wa.me/${randomNumber}?text=${encodedMessage}`
-    
+
     window.open(whatsappUrl, '_blank')
-    
-    // Reset form
+
+
     setFormData({
       nome: '',
       email: '',
       telefone: ''
     })
   }
+
 
   return (
     <section id="contato" className="py-16 bg-white">
@@ -123,7 +145,7 @@ export default function ContactForm() {
                 <div className="flex items-start">
                   <span className="text-blue-600 mr-3">💡</span>
                   <p className="text-blue-800 text-sm">
-                    Ao enviar este formulário, você será direcionado para o WhatsApp 
+                    Ao enviar este formulário, você será direcionado para o WhatsApp
                     de um de nossos consultores educacionais.
                   </p>
                 </div>
