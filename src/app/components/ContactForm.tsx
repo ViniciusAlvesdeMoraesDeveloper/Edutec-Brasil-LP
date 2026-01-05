@@ -46,11 +46,11 @@ export default function ContactForm() {
     e.preventDefault()
 
 
-    // Você deve substituir 'AW-17611655398/XXXXX_XXXXXX' pelo ID e RÓTULO (label) 
+    
 
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'conversion', {
-        'send_to': 'AW-17611655398/SEU_ROTULO_DE_CONVERSAO', // << MUDAR ESTE VALOR
+        'send_to': 'AW-17611655398/SEU_ROTULO_DE_CONVERSAO', 
         'value': 1.0,
         'currency': 'BRL',
         'transaction_id': ''
