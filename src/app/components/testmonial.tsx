@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-// Não precisa importar Image, pois você não o está usando aqui (está usando apenas o placeholder)
+
 
 const testimonials = [
     {
@@ -77,7 +77,7 @@ export default function Testimonials() {
 
     const visibleTestimonials = testimonials.slice(currentTestimonial, currentTestimonial + 3)
     
-    // Garante que sempre mostre 3 depoimentos (lógica de carrossel contínuo)
+    
     if (visibleTestimonials.length < 3) {
         visibleTestimonials.push(...testimonials.slice(0, 3 - visibleTestimonials.length))
     }
@@ -97,15 +97,15 @@ export default function Testimonials() {
 
                 {/* Grid de Depoimentos */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    {visibleTestimonials.map((testimonial) => ( // Removido o 'index' não utilizado
+                    {visibleTestimonials.map((testimonial) => ( 
+
                         <div 
                             key={testimonial.id}
                             className="bg-white rounded-2xl shadow-lg p-6 border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                         >
                             {/* Header do Depoimento */}
                             <div className="flex items-center mb-4">
-                                {/* Aqui você usaria o componente Image do Next.js se tivesse a foto, 
-                                mas o placeholder está mantido para funcionar */}
+                                
                                 <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
                                     {testimonial.name.charAt(0)}
                                 </div>
@@ -118,17 +118,17 @@ export default function Testimonials() {
 
                             {/* Rating */}
                             <div className="flex mb-4">
-                                {/* Aqui, o índice '_' é ignorado corretamente */}
+                                
                                 {[...Array(testimonial.rating)].map((_, i) => (
                                     <span key={i} className="text-yellow-400 text-lg">⭐</span>
                                 ))}
-                                {/* Adiciona estrelas vazias se o rating for menor que 5 */}
+                               
                                 {[...Array(5 - testimonial.rating)].map((_, i) => (
                                     <span key={i + testimonial.rating} className="text-gray-300 text-lg">⭐</span>
                                 ))}
                             </div>
 
-                            {/* Conteúdo do Depoimento - CORREÇÃO APLICADA AQUI */}
+                            
                             <p className="text-gray-700 mb-4 leading-relaxed">
                                 {testimonial.content} 
                             </p>

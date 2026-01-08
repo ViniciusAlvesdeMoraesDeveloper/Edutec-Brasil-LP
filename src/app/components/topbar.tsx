@@ -25,9 +25,8 @@ const TopBarLP: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Cores personalizadas (assumindo que foram configuradas no tailwind.config.js)
-  const colorGreen = "from-[#00b153]"; // Exemplo: from-primary-green
-  const colorBlue = "to-[#05365F]";   // Exemplo: to-primary-blue
+  const colorGreen = "from-[#00b153]"; 
+  const colorBlue = "to-[#05365F]";   
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -39,7 +38,7 @@ const TopBarLP: React.FC = () => {
     const phone = "5531982628327";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
-    setIsMenuOpen(false); // Fecha o menu mobile se estiver aberto
+    setIsMenuOpen(false); 
   };
 
   // Efeito para bloquear o scroll do body e garantir o fechamento no cleanup
@@ -111,10 +110,10 @@ const TopBarLP: React.FC = () => {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8 h-full">
 
-              {/* Benefícios rápidos - CORRIGIDO: Aplicação direta da cor condicional */}
+              
               <div className="flex items-center space-x-6">
 
-                {/* 100% Seguro */}
+                
                 <div className={`flex items-center space-x-2 transition-colors`}>
                   <Shield className={`w-4 h-4 transition-colors ${scrolled ? "text-gray-700" : "text-white"}`} />
                   <span className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-700" : "text-white"}`}>100% Seguro</span>
@@ -127,7 +126,7 @@ const TopBarLP: React.FC = () => {
                 </div>
               </div>
 
-              {/* Links de navegação (Cor condicional já aplicada no <a>) */}
+              {/* Links de navegação  */}
               <a
                 href="#sobre"
                 className={`px-3 py-2 rounded-lg transition-all duration-200 font-medium hover:scale-105 ${scrolled
@@ -156,7 +155,7 @@ const TopBarLP: React.FC = () => {
                 Depoimentos
               </a>
 
-              {/* CTA Principal CORRIGIDO - Agora abre WhatsApp */}
+              {/* CTA Principa*/}
               <button
                 type="button"
                 onClick={openWhatsApp}
@@ -172,7 +171,7 @@ const TopBarLP: React.FC = () => {
             <button
               onClick={toggleMenu}
               className={`md:hidden p-2 rounded-lg transition-colors duration-200 cursor-pointer ${scrolled
-                ? "text-[#05365F] hover:bg-gray-100" // Fica Azul sobre branco (corrigido)
+                ? "text-[#05365F] hover:bg-gray-100" 
                 : "text-white hover:bg-white hover:text-[#05365F]"
                 }`}
               aria-label="Toggle menu"
@@ -187,10 +186,10 @@ const TopBarLP: React.FC = () => {
         </div>
       </header>
 
-      {/* Mobile Navigation (Overlay e Menu Deslizante) */}
+      {/* Mobile Navigation  */}
       {isMenuOpen && (
         <div className="md:hidden">
-          {/* 1. Overlay de Fundo (Para fechar ao clicar fora) */}
+          {/* 1. Overlay de Fundo  */}
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-40"
             onClick={toggleMenu}
@@ -225,7 +224,7 @@ const TopBarLP: React.FC = () => {
                 </div>
               </div>
 
-              {/* Mobile Links (usando <a>) */}
+              {/* Mobile Links*/}
               <a
                 href="#sobre"
                 className="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-[#00b153] hover:text-white transition-all duration-200 font-medium"
@@ -252,7 +251,7 @@ const TopBarLP: React.FC = () => {
                 <span>Depoimentos</span>
               </a>
 
-              {/* Mobile CTA CORRIGIDO - Agora abre WhatsApp */}
+              
               <div className="pt-4">
                 <button
                   onClick={openWhatsApp}
