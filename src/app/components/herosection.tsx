@@ -156,11 +156,11 @@ export default function HeroSection() {
                                     ))}
                                 </ul>
                             </div>
-                            
-                            {/* AJUSTE CHAVE PARA MOBILE: flex-col e altura responsiva */}
+
+
                             <div className="mt-8 md:mt-0 flex flex-col items-center">
-                                {/* Container da Imagem: Altura menor no mobile (h-48) e margin inferior */}
-                                <div className="relative w-full h-48 md:h-96 mb-6 rounded-lg shadow-lg"> 
+
+                                <div className="relative w-full h-48 md:h-96 mb-6 rounded-lg shadow-lg">
                                     <Image
                                         src="/banner.webp"
                                         alt="Metodologia Edutec"
@@ -168,8 +168,8 @@ export default function HeroSection() {
                                         className="rounded-lg object-cover"
                                     />
                                 </div>
-                                
-                                {/* Balão de Texto: Removido o posicionamento 'absolute' para que flua APÓS a imagem. */}
+
+
                                 <div className="bg-green-600 text-white p-3 rounded-lg shadow-lg w-fit">
                                     <div className="font-bold text-sm">Educação que</div>
                                     <div className="font-bold text-sm">transforma!</div>
@@ -216,7 +216,7 @@ export default function HeroSection() {
                                                         </span>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div className="relative h-80 w-full">
                                                     <Image
                                                         src={slide.imagePath}
@@ -233,7 +233,7 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        {/* Navigation - Setas posicionadas fora do conteúdo */}
+
                         <button
                             onClick={() => setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length)}
                             aria-label="Slide anterior"
@@ -249,7 +249,7 @@ export default function HeroSection() {
                             <span className="text-2xl">›</span>
                         </button>
 
-                        {/* Indicadores */}
+
                         <div className="flex justify-center mt-8 space-x-3">
                             {carouselSlides.map((_, index) => (
                                 <button

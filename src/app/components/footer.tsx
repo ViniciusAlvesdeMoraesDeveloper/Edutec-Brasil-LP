@@ -6,7 +6,7 @@ import { Music2 } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-green-800 to-blue-900 text-white">
+    <footer className="bg-linear-to-r from-green-800 to-blue-900 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
