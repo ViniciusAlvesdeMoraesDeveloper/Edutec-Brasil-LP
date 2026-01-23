@@ -60,7 +60,7 @@ export default function ContactForm() {
 
 
     const randomNumber = whatsappNumbers[Math.floor(Math.random() * whatsappNumbers.length)]
-    const message = `Olá! Me chamo ${formData.nome}. Gostaria de mais informações sobre os cursos da Educavale.\n\nEmail: ${formData.email}\nTelefone: ${formData.telefone}`
+    const message = `Olá! Me chamo ${formData.nome}. Gostaria de mais informações sobre os cursos da Edutec - Brasil.\n\nEmail: ${formData.email}\nTelefone: ${formData.telefone}`
 
     const encodedMessage = encodeURIComponent(message)
     const whatsappUrl = `https://wa.me/${randomNumber}?text=${encodedMessage}`
