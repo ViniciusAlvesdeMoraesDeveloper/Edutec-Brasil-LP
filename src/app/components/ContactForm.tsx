@@ -46,11 +46,11 @@ export default function ContactForm() {
     e.preventDefault()
 
 
-    
+
 
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'conversion', {
-        'send_to': 'AW-17611655398/SEU_ROTULO_DE_CONVERSAO', 
+        'send_to': 'AW-17611655398/SEU_ROTULO_DE_CONVERSAO',
         'value': 1.0,
         'currency': 'BRL',
         'transaction_id': ''
@@ -60,7 +60,7 @@ export default function ContactForm() {
 
 
     const randomNumber = whatsappNumbers[Math.floor(Math.random() * whatsappNumbers.length)]
-    const message = `Olá! Me chamo ${formData.nome}. Gostaria de mais informações sobre os cursos da Edutec Brasil.\n\nEmail: ${formData.email}\nTelefone: ${formData.telefone}`
+    const message = `Olá! Me chamo ${formData.nome}. Gostaria de mais informações sobre os cursos da Educavale.\n\nEmail: ${formData.email}\nTelefone: ${formData.telefone}`
 
     const encodedMessage = encodeURIComponent(message)
     const whatsappUrl = `https://wa.me/${randomNumber}?text=${encodedMessage}`
