@@ -5,7 +5,11 @@ interface FormData {
   nome: string
   email: string
   telefone: string
+  
 }
+
+    
+
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
@@ -14,19 +18,20 @@ declare global {
   }
 }
 
-const whatsappNumbers = [
-  '5531973123670',
-  '5531973123734',
-  '5531982642835',
-  '5531982665400'
-]
+
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     nome: '',
     email: '',
-    telefone: ''
+    telefone: '',
+    
   })
+
+    const [enviando, setEnviando] = useState(false);
+    const [mensagem, setMensagem] = useState<string | null>(null);
+    const [erro, setErro] = useState<string | null>(null);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -37,38 +42,73 @@ export default function ContactForm() {
   }
 
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        setMensagem(null);
+        setErro(null);
+        setEnviando(true);
 
+        try {
+            console.log("Iniciando envio para Apps Script");
+            console.log("Payload formulário", formData);
 
+            const payload = {
+                form_type: "alunos_modal",
+                name: formData.nome,
+                email: formData.email,
+                phone: formData.telefone,
+                source: "next_form",
+                pageUrl: typeof window !== "undefined" ? window.location.href : "",
+                userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
+            };
+            console.log("Payload JSON", payload);
 
+            const response = await fetch(
+                "https://script.google.com/macros/s/AKfycbwdMwlI0O23wyJCSAHsqzy2sshU2O1pvoutR9JDLR3TpCjIR9r-Y5d4GHjFF1CosklzKA/exec",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8",
+                    },
+                    body: JSON.stringify(payload),
+                }
+            );
 
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-17611655398/SEU_ROTULO_DE_CONVERSAO',
-        'value': 1.0,
-        'currency': 'BRL',
-        'transaction_id': ''
-      });
-      console.log('Conversão do Google Ads enviada: AW-17611655398/SEU_ROTULO_DE_CONVERSAO');
+            const text = await response.text();
+            console.log("Resposta Apps Script status", response.status);
+            console.log("Resposta Apps Script corpo", text);
+
+            if (!response.ok) {
+                setErro(`Erro HTTP ${response.status}`);
+                return;
+            }
+
+            let data: { success?: boolean; error?: string } | null = null;
+            try {
+                data = JSON.parse(text);
+            } catch {
+                data = null;
+            }
+
+            if (data && data.success === false) {
+                setErro(data.error || "Não foi possível enviar seus dados.");
+                return;
+            }
+            
+            setFormData({
+              nome:'',
+              email:"",
+              telefone:"",
+            })
+            setMensagem("Dados enviados com sucesso!");
+            window.scrollTo({top:0, behavior:'smooth'});
+            
+        } catch {
+            setErro("Ocorreu um erro ao enviar seus dados. Tente novamente.");
+        } finally {
+            setEnviando(false);
+        }
     }
-
-
-    const randomNumber = whatsappNumbers[Math.floor(Math.random() * whatsappNumbers.length)]
-    const message = `Olá! Me chamo ${formData.nome}. Gostaria de mais informações sobre os cursos da Edutec - Brasil.\n\nEmail: ${formData.email}\nTelefone: ${formData.telefone}`
-
-    const encodedMessage = encodeURIComponent(message)
-    const whatsappUrl = `https://wa.me/${randomNumber}?text=${encodedMessage}`
-
-    window.open(whatsappUrl, '_blank')
-
-
-    setFormData({
-      nome: '',
-      email: '',
-      telefone: ''
-    })
-  }
 
 
   return (
@@ -140,8 +180,7 @@ export default function ContactForm() {
                 <div className="flex items-start">
                   <span className="text-blue-600 mr-3">💡</span>
                   <p className="text-blue-800 text-sm">
-                    Ao enviar este formulário, você será direcionado para o WhatsApp
-                    de um de nossos consultores educacionais.
+                    Ao enviar este formulário, nossa equipe de consultores entrará em contato com você em breve
                   </p>
                 </div>
               </div>
@@ -149,9 +188,14 @@ export default function ContactForm() {
               <button
                 type="submit"
                 className="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
+                disabled={enviando}
               >
-                Falar com Consultor no WhatsApp
+               {enviando ? "Enviando..." : "Solicitar Contato Agora"}
               </button>
+              {mensagem && <p className="text-green-600 font-medium text-center">{mensagem}</p>}
+
+              {erro && <p className="text-red-600 font-medium text-center">{erro}</p>}
+
             </form>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
