@@ -33,13 +33,7 @@ const TopBarLP: React.FC = () => {
   };
 
   // Função para abrir WhatsApp
-  const openWhatsApp = () => {
-    const message = "Olá! Gostaria de mais informações sobre os cursos.";
-    const phone = "5531982628327";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-    setIsMenuOpen(false); 
-  };
+  
 
   // Efeito para bloquear o scroll do body e garantir o fechamento no cleanup
   useEffect(() => {
@@ -158,7 +152,9 @@ const TopBarLP: React.FC = () => {
               {/* CTA Principa*/}
               <button
                 type="button"
-                onClick={openWhatsApp}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavLinkClick("contato")}}
                 className={`flex items-center space-x-3 px-6 py-3 bg-gradient-to-r ${colorGreen} ${colorBlue} text-white rounded-full font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-[#00b153] focus:ring-opacity-50 animate-pulse hover:animate-none`}
               >
                 <UserPlus className="w-5 h-5" />
@@ -254,7 +250,9 @@ const TopBarLP: React.FC = () => {
               
               <div className="pt-4">
                 <button
-                  onClick={openWhatsApp}
+                  onClick={(e)=>{e.preventDefault();
+                    handleNavLinkClick("contato");
+                  }}
                   className={`w-full flex items-center justify-center space-x-3 px-6 py-4 bg-gradient-to-r ${colorGreen} ${colorBlue} text-white rounded-xl font-bold shadow-md transition-all duration-300 hover:opacity-90`}
                 >
                   <UserPlus className="w-5 h-5" />
