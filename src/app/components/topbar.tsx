@@ -32,7 +32,7 @@ const TopBarLP: React.FC = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  // Função para abrir WhatsApp
+
   
 
   // Efeito para bloquear o scroll do body e garantir o fechamento no cleanup
