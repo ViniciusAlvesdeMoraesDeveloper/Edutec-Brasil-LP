@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import {
   MessageCircle,
   Menu,
@@ -7,8 +8,8 @@ import {
   UserPlus,
   ArrowRight,
   Star,
-  Shield,   
-  Briefcase, 
+  Shield,
+  Briefcase,
 } from "lucide-react";
 
 
@@ -25,15 +26,15 @@ const TopBarLP: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const colorGreen = "from-[#00b153]"; 
-  const colorBlue = "to-[#05365F]";   
+  const colorGreen = "from-[#00b153]";
+  const colorBlue = "to-[#05365F]";
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
 
-  
+
 
   // Efeito para bloquear o scroll do body e garantir o fechamento no cleanup
   useEffect(() => {
@@ -104,10 +105,10 @@ const TopBarLP: React.FC = () => {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8 h-full">
 
-              
+
               <div className="flex items-center space-x-6">
 
-                
+
                 <div className={`flex items-center space-x-2 transition-colors`}>
                   <Shield className={`w-4 h-4 transition-colors ${scrolled ? "text-gray-700" : "text-white"}`} />
                   <span className={`text-sm font-medium transition-colors ${scrolled ? "text-gray-700" : "text-white"}`}>100% Seguro</span>
@@ -134,7 +135,7 @@ const TopBarLP: React.FC = () => {
               >
                 Sobre nós
               </a>
-             
+
               <a
                 href="#text"
                 className={`px-3 py-2 rounded-lg transition-all duration-200 font-medium hover:scale-105 ${scrolled
@@ -154,7 +155,8 @@ const TopBarLP: React.FC = () => {
                 type="button"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavLinkClick("contato")}}
+                  handleNavLinkClick("contato")
+                }}
                 className={`flex items-center space-x-3 px-6 py-3 bg-gradient-to-r ${colorGreen} ${colorBlue} text-white rounded-full font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-[#00b153] focus:ring-opacity-50 animate-pulse hover:animate-none`}
               >
                 <UserPlus className="w-5 h-5" />
@@ -167,7 +169,7 @@ const TopBarLP: React.FC = () => {
             <button
               onClick={toggleMenu}
               className={`md:hidden p-2 rounded-lg transition-colors duration-200 cursor-pointer ${scrolled
-                ? "text-[#05365F] hover:bg-gray-100" 
+                ? "text-[#05365F] hover:bg-gray-100"
                 : "text-white hover:bg-white hover:text-[#05365F]"
                 }`}
               aria-label="Toggle menu"
@@ -233,7 +235,7 @@ const TopBarLP: React.FC = () => {
                 <span>Sobre nós</span>
               </a>
 
-              
+
 
               <a
                 href="#text"
@@ -247,10 +249,11 @@ const TopBarLP: React.FC = () => {
                 <span>Depoimentos</span>
               </a>
 
-              
+
               <div className="pt-4">
                 <button
-                  onClick={(e)=>{e.preventDefault();
+                  onClick={(e) => {
+                    e.preventDefault();
                     handleNavLinkClick("contato");
                   }}
                   className={`w-full flex items-center justify-center space-x-3 px-6 py-4 bg-gradient-to-r ${colorGreen} ${colorBlue} text-white rounded-xl font-bold shadow-md transition-all duration-300 hover:opacity-90`}
