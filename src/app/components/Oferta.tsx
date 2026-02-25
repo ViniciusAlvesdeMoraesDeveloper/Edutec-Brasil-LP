@@ -1,5 +1,5 @@
 'use client'
-import Link from 'next/link'
+// Não precisa importar Link para âncoras internas
 
 export default function OfferClosing() {
   return (
@@ -51,13 +51,13 @@ export default function OfferClosing() {
               *Consulte condições e saiba mais.
             </p>
 
-            {/* CTA */}
-            <Link
+            
+            <a
               href="#contato"
               className="inline-block bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-xl md:text-2xl px-12 py-6 rounded-xl shadow-2xl transform hover:scale-105 transition-all duration-300"
             >
               Consulte condições e saiba mais →
-            </Link>
+            </a>
           </div>
         </div>
 

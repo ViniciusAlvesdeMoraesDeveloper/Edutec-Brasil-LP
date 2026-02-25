@@ -33,12 +33,9 @@ export default function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="#contato"
-                className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-lg px-12 py-6 rounded-xl shadow-lg transform hover:scale-105 transition-all"
-              >
+              <a href="#contato"className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-lg px-12 py-6 rounded-xl shadow-lg transform hover:scale-105 transition-all">
                 Quero meu diploma rápido →
-              </Link>
+              </a>
             </div>
           </div>
         </div>
