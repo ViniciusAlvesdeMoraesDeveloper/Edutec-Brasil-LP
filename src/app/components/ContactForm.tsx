@@ -5,11 +5,10 @@ interface FormData {
   nome: string
   email: string
   telefone: string
-  
+  curso: string
+  graduation: string
+  timeActuation: string
 }
-
-    
-
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
@@ -18,98 +17,185 @@ declare global {
   }
 }
 
-
-
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     nome: '',
     email: '',
     telefone: '',
-    
+    curso: '',
+    graduation: '',
+    timeActuation: '',
   })
 
-    const [enviando, setEnviando] = useState(false);
-    const [mensagem, setMensagem] = useState<string | null>(null);
-    const [erro, setErro] = useState<string | null>(null);
+  const [enviando, setEnviando] = useState(false)
+  const [mensagem, setMensagem] = useState<string | null>(null)
+  const [erro, setErro] = useState<string | null>(null)
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$|^\d{10,11}$/
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+ 
+  const cursosDisponiveis = [
+    "Técnico em Administração",
+  "Técnico em Agente Comunitário de Saúde",
+  "Técnico em Agricultura",
+  "Técnico em Agrimensura",
+  "Técnico em Agroindústria",
+  "Técnico em Agropecuária",
+  "Técnico em Análises Clínicas",
+  "Técnico em Aquicultura",
+  "Técnico em Automação Industrial",
+  "Técnico em Biotecnologia",
+  "Técnico em Contabilidade",
+  "Técnico em Cuidados de Idosos",
+  "Técnico em Defesa Civil",
+  "Técnico em Desenvolvimento de Sistemas",
+  "Técnico em Design de Interiores",
+  "Técnico em Design Gráfico",
+  "Técnico em Edificações",
+  "Técnico em Eletromecânica",
+  "Técnico em Eletrônica",
+  "Técnico em Eletrotécnica",
+  "Técnico em Enfermagem",
+  "Técnico em Equipamentos Biomédicos",
+  "Técnico em Estética",
+  "Técnico em Eventos",
+  "Técnico em Farmácia",
+  "Técnico em Gastronomia",
+  "Técnico em Gerência em Saúde",
+  "Técnico em Guia de Turismo",
+  "Técnico em Informática para a Internet",
+  "Técnico em Logística",
+  "Técnico em Manutenção de Máquinas Industriais",
+  "Técnico em Manutenção de Máquinas Navais",
+  "Técnico em Manutenção de Máquinas Pesadas",
+  "Técnico em Marketing",
+  "Técnico em Meio Ambiente",
+  "Técnico em Metalurgia",
+  "Técnico em Mineração",
+  "Técnico em Nutrição e Dietética",
+  "Técnico em Óptica",
+  "Técnico em Prevenção e Controle de Incêndios",
+  "Técnico em Qualidade",
+  "Técnico em Química",
+  "Técnico em Radiologia",          
+  "Técnico em Recursos Humanos",
+  "Técnico em Redes de Computadores",
+  "Técnico em Refrigeração e Climatização",
+  "Técnico em Saúde Bucal",
+  "Técnico em Secretaria Escolar",
+  "Técnico em Segurança do Trabalho",
+  "Técnico em Serviços Jurídicos",
+  "Técnico em Sistemas de Energia Renovável",
+  "Técnico em Soldagem",
+  "Técnico em Telecomunicações",
+  "Técnico em Transações Imobiliárias",
+  "Técnico em Trânsito",
+  "Técnico em Vendas",
+  "Técnico em Veterinária",
+  "Outro (especifique no contato)",
+  ].sort() 
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
 
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        setMensagem(null);
-        setErro(null);
-        setEnviando(true);
-
-        try {
-            console.log("Iniciando envio para Apps Script");
-            console.log("Payload formulário", formData);
-
-            const payload = {
-                form_type: "alunos_modal",
-                name: formData.nome,
-                email: formData.email,
-                phone: formData.telefone,
-                source: "next_form",
-                pageUrl: typeof window !== "undefined" ? window.location.href : "",
-                userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
-            };
-            console.log("Payload JSON", payload);
-
-            const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbwdMwlI0O23wyJCSAHsqzy2sshU2O1pvoutR9JDLR3TpCjIR9r-Y5d4GHjFF1CosklzKA/exec",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "text/plain;charset=utf-8",
-                    },
-                    body: JSON.stringify(payload),
-                }
-            );
-
-            const text = await response.text();
-            console.log("Resposta Apps Script status", response.status);
-            console.log("Resposta Apps Script corpo", text);
-
-            if (!response.ok) {
-                setErro(`Erro HTTP ${response.status}`);
-                return;
-            }
-
-            let data: { success?: boolean; error?: string } | null = null;
-            try {
-                data = JSON.parse(text);
-            } catch {
-                data = null;
-            }
-
-            if (data && data.success === false) {
-                setErro(data.error || "Não foi possível enviar seus dados.");
-                return;
-            }
-            
-            setFormData({
-              nome:'',
-              email:"",
-              telefone:"",
-            })
-            setMensagem("Dados enviados com sucesso!");
-            window.scrollTo({top:0, behavior:'smooth'});
-            
-        } catch {
-            setErro("Ocorreu um erro ao enviar seus dados. Tente novamente.");
-        } finally {
-            setEnviando(false);
-        }
+    if (name === 'telefone') {
+      const apenasNums = value.replace(/[^\d()-\s]/g, '')
+      if (apenasNums.length <= 15) {
+        setFormData((prev) => ({ ...prev, [name]: apenasNums }))
+      }
+      return
     }
 
+    if (name === 'nome') {
+      const apenasLetras = value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '')
+      setFormData((prev) => ({ ...prev, [name]: apenasLetras }))
+      return
+    }
+
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setMensagem(null)
+    setErro(null)
+
+    // Validações
+    if (formData.nome.trim().length < 3) {
+      setErro('O nome deve ter pelo menos 3 caracteres.')
+      return
+    }
+    if (!emailRegex.test(formData.email)) {
+      setErro('Por favor, insira um e-mail válido.')
+      return
+    }
+    if (!telefoneRegex.test(formData.telefone)) {
+      setErro('Telefone inválido. Use (11) 99999-9999.')
+      return
+    }
+    if (!formData.curso) {
+      setErro('Selecione o curso de interesse.')
+      return
+    }
+    if (!formData.graduation) {
+      setErro('Informe se possui Ensino Médio completo.')
+      return
+    }
+    if (!formData.timeActuation) {
+      setErro('Informe o tempo de atuação na área.')
+      return
+    }
+
+    setEnviando(true)
+
+    try {
+      const payload = {
+        form_type: 'alunos_modal',
+        name: formData.nome,
+        email: formData.email,
+        phone: formData.telefone,
+        curso: formData.curso,          
+        graduation: formData.graduation,
+        timeActuation: formData.timeActuation,
+        source: 'next_form',
+        pageUrl: typeof window !== 'undefined' ? window.location.href : '',
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+      }
+
+      const response = await fetch(
+        'https://script.google.com/macros/s/AKfycbwdMwlI0O23wyJCSAHsqzy2sshU2O1pvoutR9JDLR3TpCjIR9r-Y5d4GHjFF1CosklzKA/exec',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        }
+      )
+
+      const text = await response.text()
+
+      if (response.ok) {
+        // Evento de conversão no Google Analytics (GA4)
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'form_submit_success', {
+            event_category: 'Lead',
+            event_label: 'Formulário Contato',
+            value: 1,
+            curso: formData.curso,
+          })
+        }
+
+        // Redireciona para página de agradecimento
+        window.location.href = '/obrigado' 
+      } else {
+        setErro('Erro ao enviar dados. Tente novamente.')
+      }
+    } catch {
+      setErro('Erro de conexão. Verifique sua internet.')
+    } finally {
+      setEnviando(false)
+    }
+  }
 
   return (
     <section id="contato" className="py-16 bg-white">
@@ -126,9 +212,22 @@ export default function ContactForm() {
 
           <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl shadow-lg p-8 md:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {erro && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                  <strong>Erro: </strong>
+                  {erro}
+                </div>
+              )}
+              {mensagem && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+                  <strong>Sucesso! </strong>
+                  {mensagem}
+                </div>
+              )}
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="nome" className="block text-shadow-lime-700 font-medium text-gray-700 mb-2">
+                  <label htmlFor="nome" className="block font-medium text-gray-700 mb-2">
                     Nome Completo *
                   </label>
                   <input
@@ -138,6 +237,7 @@ export default function ContactForm() {
                     value={formData.nome}
                     onChange={handleChange}
                     required
+                    maxLength={100}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-black"
                     placeholder="Seu nome completo"
                   />
@@ -165,37 +265,119 @@ export default function ContactForm() {
                   Telefone/WhatsApp *
                 </label>
                 <input
-                  type="tel"
+                  type="text"
                   id="telefone"
                   name="telefone"
                   value={formData.telefone}
                   onChange={handleChange}
                   required
+                  maxLength={15}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-black"
-                  placeholder="(11) 99999-9999"
+                  placeholder="(31) 99999-9999"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Possui Ensino Médio Completo? <span className="text-red-600 text-xl">*</span>
+                </label>
+                <div className="flex flex-col sm:flex-row gap-6 text-gray-700">
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="graduation"
+                      value="Sim"
+                      checked={formData.graduation === 'Sim'}
+                      onChange={handleChange}
+                      required
+                      className="mr-2"
+                    />
+                    Sim
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="graduation"
+                      value="Não"
+                      checked={formData.graduation === 'Não'}
+                      onChange={handleChange}
+                      required
+                      className="mr-2"
+                    />
+                    Não
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Qual o tempo de Atuação na Área? <span className="text-red-600 text-xl">*</span>
+                </label>
+                <div className="flex flex-col sm:flex-row gap-6 text-gray-700">
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="timeActuation"
+                      value="Menos de 1 Ano"
+                      checked={formData.timeActuation === 'Menos de 1 Ano'}
+                      onChange={handleChange}
+                      required
+                      className="mr-2"
+                    />
+                    Menos de 1 Ano
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="timeActuation"
+                      value="1 Ano ou Mais"
+                      checked={formData.timeActuation === '1 Ano ou Mais'}
+                      onChange={handleChange}
+                      required
+                      className="mr-2"
+                    />
+                    1 Ano ou Mais
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="curso" className="block text-sm font-medium text-gray-700 mb-2">
+                  Curso de Interesse *
+                </label>
+                <select
+                  id="curso"
+                  name="curso"
+                  value={formData.curso}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-black bg-white"
+                >
+                  <option value="">Selecione o curso desejado</option>
+                  {cursosDisponiveis.map((curso) => (
+                    <option key={curso} value={curso}>
+                      {curso}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div className="bg-blue-100 border border-blue-200 rounded-lg p-4">
                 <div className="flex items-start">
-                  <span className="text-blue-600 mr-3">💡</span>
+                  <span className="text-blue-600 mr-3 text-xl">💡</span>
                   <p className="text-blue-800 text-sm">
-                    Ao enviar este formulário, nossa equipe de consultores entrará em contato com você em breve
+                    Ao enviar este formulário, nossa equipe de consultores entrará em contato com você em breve via WhatsApp ou e-mail.
                   </p>
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl disabled:bg-gray-400 disabled:cursor-not-allowed"
                 disabled={enviando}
               >
-               {enviando ? "Enviando..." : "Solicitar Contato Agora"}
+                {enviando ? 'Enviando...' : 'Solicitar Contato Agora'}
               </button>
-              {mensagem && <p className="text-green-600 font-medium text-center">{mensagem}</p>}
-
-              {erro && <p className="text-red-600 font-medium text-center">{erro}</p>}
-
             </form>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">

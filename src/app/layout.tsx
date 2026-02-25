@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 
 
-import TopBar from "./components/topbar";
+
 import Footer from "./components/footer";
 
 
@@ -53,7 +53,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TopBar />
+        
         {children}
         <Footer />
       </body>

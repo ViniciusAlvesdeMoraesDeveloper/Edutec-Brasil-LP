@@ -1,83 +1,100 @@
-import Link from "next/link"
-import { Youtube } from "lucide-react"
-import { Instagram } from "lucide-react"
-import { Music2 } from "lucide-react"
-
+'use client'
+import Link from 'next/link'
+import { Instagram, Youtube, Music2 } from 'lucide-react'
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className="bg-linear-to-r from-green-800 to-blue-900 text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">Edutec Brasil</h3>
-            <p className="text-green-100 mb-4 max-w-md">
-              Há mais de 15 anos transformando vidas através da educação tecnológica.
-              Oferecemos cursos de qualidade com foco na empregabilidade e no
-              desenvolvimento profissional.
+    <footer className="bg-gradient-to-r from-green-800 to-blue-900 text-white">
+      <div className="container mx-auto px-4 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+          {/* Coluna 1: Sobre a Edutec */}
+          <div>
+            <h3 className="text-2xl font-bold mb-5">Edutec Brasil</h3>
+            <p className="text-green-100 mb-6 leading-relaxed max-w-lg">
+              Há mais de 15 anos transformando vidas através da educação técnica de qualidade.  
+              Cursos 100% EAD, reconhecidos pelo MEC, com foco total na empregabilidade e no seu crescimento profissional.
             </p>
-            <div className="flex space-x-4">
-              <div className="bg-white/10 p-2 rounded-lg">
-                <Link href={"https://www.instagram.com/edutec_brasil/"} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                  <Instagram className="text-green-100" />
-                </Link>
-              </div>
-              <div className="bg-white/10 p-2 rounded-lg">
-                <Link href="https://www.tiktok.com/@edutec_brasil"
-                target="blank" rel="noopeener noreferrer"
-                aria-label="TikTok">
-                  <Music2 className="text-green-100" />
-                </Link>
-              </div>
-              <div className="bg-white/10 p-2 rounded-lg">
-                <Link href="https://www.youtube.com/@EduTecBrasil"
-                target="blank" rel="noopener noreferrer"
-                aria-label="Youtube">
-                  <Youtube className="text-green-100" />
-                </Link>
-              </div>
+
+            {/* Redes sociais */}
+            <div className="flex space-x-5">
+              <a
+                href="https://www.instagram.com/edutec_brasil/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram da Edutec"
+                className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors duration-200"
+              >
+                <Instagram className="w-6 h-6 text-green-100" />
+              </a>
+
+              <a
+                href="https://www.tiktok.com/@edutec_brasil"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok da Edutec"
+                className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors duration-200"
+              >
+                <Music2 className="w-6 h-6 text-green-100" />
+              </a>
+
+              <a
+                href="https://www.youtube.com/@EduTecBrasil"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube da Edutec"
+                className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors duration-200"
+              >
+                <Youtube className="w-6 h-6 text-green-100" />
+              </a>
             </div>
           </div>
 
+          {/* Coluna 2: Contato */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Cursos</h4>
-            <ul className="space-y-2 text-green-100">
-              <li>Técnico em Agricultura</li>
-              <li>Técnico em Enfermagem</li>
-              <li>Técnico em Eletromecânica</li>
-              <li>Técnico em Transação Imobiliária </li>
+            <h4 className="text-xl font-semibold mb-5">Contato</h4>
+            <ul className="space-y-4 text-green-100">
+              <li className="flex items-center gap-3">
+                <span className="text-2xl">📞</span>
+                <a 
+                  href="tel:+5531982628327" 
+                  className="hover:text-green-300 transition-colors"
+                >
+                  (31) 98262-8327
+                </a>
+              </li>
 
-            </ul>
-          </div>
+              <li className="flex items-center gap-3">
+                <span className="text-2xl">📧</span>
+                <a 
+                  href="mailto:educacaoedutecbrasil@gmail.com" 
+                  className="hover:text-green-300 transition-colors break-all"
+                >
+                  educacaoedutecbrasil@gmail.com
+                </a>
+              </li>
 
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contato</h4>
-            <ul className="space-y-2 text-green-100">
-              <li className="flex items-center">
-                <span className="mr-2">📞</span>
-                (31) 98262-8327
+              <li className="flex items-start gap-3">
+                <span className="text-2xl mt-1">📍</span>
+                <div>
+                  Rua Luiz Rodrigues dos Santos, 44 – Todos os Santos<br />
+                  Coronel Fabriciano/MG – CEP 35170-061
+                </div>
               </li>
-              <li className="flex items-center">
-                <span className="mr-2">📧</span>
-                educacaoedutecbrasil@gmail.com
-              </li>
-              <li className="flex items-baseline">
-                <span className="mr-2">📍</span>
-                Luiz Rodrigues dos Santos, 44
-                Todos os Santos - Coronel Fabriciano/MG
-                CEP: 35170-061
-              </li>
-              <li className="flex items-center">
-                <span className="mr-2">🕒</span>
-                Seg à Sex: 8h-18h
+
+              <li className="flex items-center gap-3">
+                <span className="text-2xl">🕒</span>
+                Seg a Sex: 8h às 18h
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-green-700 mt-8 pt-8 text-center text-green-200">
+        {/* Copyright */}
+        <div className="border-t border-green-700 mt-12 pt-8 text-center text-green-200 text-sm">
           <p>
-            &copy; {new Date().getFullYear()} Edutec Brasil. Todos os direitos reservados.
+            © {currentYear} Edutec Brasil. Todos os direitos reservados.<br />
             CNPJ: 61.594.318/0001-32
           </p>
         </div>
