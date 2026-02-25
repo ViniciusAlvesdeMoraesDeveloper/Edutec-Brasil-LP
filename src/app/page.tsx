@@ -10,18 +10,14 @@ import Oferta from "./components/Oferta";
 export default function Home() {
   return (
     <main>
-
-
-
-       
-        <EdutecHero />
-       <Pilares/>
-       <Metodo/>
-        <Prova/>
-        <Testimonials />
-        <Oferta/>
-        <ContactForm />
-        <Faq/>
+      <EdutecHero />
+      <Pilares/>
+      <Metodo/>
+      <Prova/>
+      <Testimonials />
+      <Oferta/>
+      <ContactForm />
+      <Faq/>
     </main>
   );
 }
