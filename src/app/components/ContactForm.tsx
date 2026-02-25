@@ -34,67 +34,83 @@ export default function ContactForm() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$|^\d{10,11}$/
 
- 
   const cursosDisponiveis = [
     "Técnico em Administração",
-  "Técnico em Agente Comunitário de Saúde",
-  "Técnico em Agricultura",
-  "Técnico em Agrimensura",
-  "Técnico em Agroindústria",
-  "Técnico em Agropecuária",
-  "Técnico em Análises Clínicas",
-  "Técnico em Aquicultura",
-  "Técnico em Automação Industrial",
-  "Técnico em Biotecnologia",
-  "Técnico em Contabilidade",
-  "Técnico em Cuidados de Idosos",
-  "Técnico em Defesa Civil",
-  "Técnico em Desenvolvimento de Sistemas",
-  "Técnico em Design de Interiores",
-  "Técnico em Design Gráfico",
-  "Técnico em Edificações",
-  "Técnico em Eletromecânica",
-  "Técnico em Eletrônica",
-  "Técnico em Eletrotécnica",
-  "Técnico em Enfermagem",
-  "Técnico em Equipamentos Biomédicos",
-  "Técnico em Estética",
-  "Técnico em Eventos",
-  "Técnico em Farmácia",
-  "Técnico em Gastronomia",
-  "Técnico em Gerência em Saúde",
-  "Técnico em Guia de Turismo",
-  "Técnico em Informática para a Internet",
-  "Técnico em Logística",
-  "Técnico em Manutenção de Máquinas Industriais",
-  "Técnico em Manutenção de Máquinas Navais",
-  "Técnico em Manutenção de Máquinas Pesadas",
-  "Técnico em Marketing",
-  "Técnico em Meio Ambiente",
-  "Técnico em Metalurgia",
-  "Técnico em Mineração",
-  "Técnico em Nutrição e Dietética",
-  "Técnico em Óptica",
-  "Técnico em Prevenção e Controle de Incêndios",
-  "Técnico em Qualidade",
-  "Técnico em Química",
-  "Técnico em Radiologia",          
-  "Técnico em Recursos Humanos",
-  "Técnico em Redes de Computadores",
-  "Técnico em Refrigeração e Climatização",
-  "Técnico em Saúde Bucal",
-  "Técnico em Secretaria Escolar",
-  "Técnico em Segurança do Trabalho",
-  "Técnico em Serviços Jurídicos",
-  "Técnico em Sistemas de Energia Renovável",
-  "Técnico em Soldagem",
-  "Técnico em Telecomunicações",
-  "Técnico em Transações Imobiliárias",
-  "Técnico em Trânsito",
-  "Técnico em Vendas",
-  "Técnico em Veterinária",
-  "Outro (especifique no contato)",
-  ].sort() 
+    "Técnico em Agente Comunitário de Saúde",
+    "Técnico em Agricultura",
+    "Técnico em Agrimensura",
+    "Técnico em Agroindústria",
+    "Técnico em Agropecuária",
+    "Técnico em Análises Clínicas",
+    "Técnico em Aquicultura",
+    "Técnico em Automação Industrial",
+    "Técnico em Biotecnologia",
+    "Técnico em Contabilidade",
+    "Técnico em Cuidados de Idosos",
+    "Técnico em Defesa Civil",
+    "Técnico em Desenvolvimento de Sistemas",
+    "Técnico em Design de Interiores",
+    "Técnico em Design Gráfico",
+    "Técnico em Edificações",
+    "Técnico em Eletromecânica",
+    "Técnico em Eletrônica",
+    "Técnico em Eletrotécnica",
+    "Técnico em Enfermagem",
+    "Técnico em Equipamentos Biomédicos",
+    "Técnico em Estética",
+    "Técnico em Eventos",
+    "Técnico em Farmácia",
+    "Técnico em Gastronomia",
+    "Técnico em Gerência em Saúde",
+    "Técnico em Guia de Turismo",
+    "Técnico em Informática para a Internet",
+    "Técnico em Logística",
+    "Técnico em Manutenção de Máquinas Industriais",
+    "Técnico em Manutenção de Máquinas Navais",
+    "Técnico em Manutenção de Máquinas Pesadas",
+    "Técnico em Marketing",
+    "Técnico em Meio Ambiente",
+    "Técnico em Metalurgia",
+    "Técnico em Mineração",
+    "Técnico em Nutrição e Dietética",
+    "Técnico em Óptica",
+    "Técnico em Prevenção e Controle de Incêndios",
+    "Técnico em Qualidade",
+    "Técnico em Química",
+    "Técnico em Radiologia",
+    "Técnico em Recursos Humanos",
+    "Técnico em Redes de Computadores",
+    "Técnico em Refrigeração e Climatização",
+    "Técnico em Saúde Bucal",
+    "Técnico em Secretaria Escolar",
+    "Técnico em Segurança do Trabalho",
+    "Técnico em Serviços Jurídicos",
+    "Técnico em Sistemas de Energia Renovável",
+    "Técnico em Soldagem",
+    "Técnico em Telecomunicações",
+    "Técnico em Transações Imobiliárias",
+    "Técnico em Trânsito",
+    "Técnico em Vendas",
+    "Técnico em Veterinária",
+    "Outro (especifique no contato)",
+  ].sort()
+
+
+  const consultores = [
+    { nome: "Camille Lopes", whatsapp: "5531973123670" },
+    { nome: "Luana Guedes", whatsapp: "5531982642835" },
+    { nome: "Hyago Henrique", whatsapp: "5531973123734" },
+    { nome: "Laura Perez", whatsapp: "5531982665400" },
+  ]
+
+  // Função para escolher o próximo consultor na fila (rodízio)
+  const getNextConsultor = () => {
+    const lastIndexStr = localStorage.getItem('lastConsultorIndex')
+    const lastIndex = lastIndexStr ? parseInt(lastIndexStr, 10) : -1
+    const nextIndex = (lastIndex + 1) % consultores.length
+    localStorage.setItem('lastConsultorIndex', nextIndex.toString())
+    return consultores[nextIndex]
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -131,7 +147,7 @@ export default function ContactForm() {
       return
     }
     if (!telefoneRegex.test(formData.telefone)) {
-      setErro('Telefone inválido. Use (11) 99999-9999.')
+      setErro('Telefone inválido. Use (31) 99999-9999.')
       return
     }
     if (!formData.curso) {
@@ -150,14 +166,39 @@ export default function ContactForm() {
     setEnviando(true)
 
     try {
+      //  Escolhe o próximo consultor da fila
+      const consultor = getNextConsultor()
+
+      // Mensagem personalizada para o WhatsApp
+      const mensagemWhats = encodeURIComponent(
+        `Olá, ${consultor.nome}! Tudo bem?\n\n` +
+        `Acabei de preencher o formulário no site da Edutec.\n\n` +
+        `Meu nome: ${formData.nome}\n` +
+        `E-mail: ${formData.email}\n` +
+        `Telefone/WhatsApp: ${formData.telefone}\n` +
+        `Curso de interesse: ${formData.curso}\n` +
+        `Ensino Médio completo? ${formData.graduation}\n` +
+        `Tempo de atuação na área: ${formData.timeActuation}\n\n` +
+        `Gostaria de saber mais sobre o curso, valores e o processo de certificação rápida!`
+      )
+
+      // Abre o WhatsApp imediatamente (usuário inicia a conversa)
+      const whatsappUrl = `https://wa.me/${consultor.whatsapp}?text=${mensagemWhats}`
+      window.open(whatsappUrl, '_blank')
+
+      //  Pequeno delay para o usuário ter tempo de ver/interagir com o WhatsApp
+      await new Promise(resolve => setTimeout(resolve, 2000))
+
+      //  Envia os dados para a planilha, incluindo o consultor atribuído
       const payload = {
         form_type: 'alunos_modal',
         name: formData.nome,
         email: formData.email,
         phone: formData.telefone,
-        curso: formData.curso,          
+        curso: formData.curso,
         graduation: formData.graduation,
         timeActuation: formData.timeActuation,
+        consultor: consultor.nome,
         source: 'next_form',
         pageUrl: typeof window !== 'undefined' ? window.location.href : '',
         userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
@@ -172,26 +213,26 @@ export default function ContactForm() {
         }
       )
 
-      const text = await response.text()
-
       if (response.ok) {
-        // Evento de conversão no Google Analytics (GA4)
+        // Evento GA4 de sucesso
         if (typeof window !== 'undefined' && window.gtag) {
           window.gtag('event', 'form_submit_success', {
             event_category: 'Lead',
             event_label: 'Formulário Contato',
             value: 1,
             curso: formData.curso,
+            consultor: consultor.nome,
           })
         }
 
         // Redireciona para página de agradecimento
-        window.location.href = '/obrigado' 
+        window.location.href = '/obrigado'
       } else {
-        setErro('Erro ao enviar dados. Tente novamente.')
+        setErro('Erro ao registrar dados. Tente novamente.')
       }
-    } catch {
+    } catch (err) {
       setErro('Erro de conexão. Verifique sua internet.')
+      console.error(err)
     } finally {
       setEnviando(false)
     }
@@ -216,12 +257,6 @@ export default function ContactForm() {
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
                   <strong>Erro: </strong>
                   {erro}
-                </div>
-              )}
-              {mensagem && (
-                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-                  <strong>Sucesso! </strong>
-                  {mensagem}
                 </div>
               )}
 
@@ -376,7 +411,7 @@ export default function ContactForm() {
                 className="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl disabled:bg-gray-400 disabled:cursor-not-allowed"
                 disabled={enviando}
               >
-                {enviando ? 'Enviando...' : 'Solicitar Contato Agora'}
+                {enviando ? 'Processando...' : 'Solicitar Contato Agora'}
               </button>
             </form>
 
