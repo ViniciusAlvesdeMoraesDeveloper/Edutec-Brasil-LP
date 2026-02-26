@@ -168,27 +168,7 @@ export default function ContactForm() {
     try {
       //  Escolhe o próximo consultor da fila
       const consultor = getNextConsultor()
-
-      // Mensagem personalizada para o WhatsApp
-      const mensagemWhats = encodeURIComponent(
-        `Olá, ${consultor.nome}! Tudo bem?\n\n` +
-        `Acabei de preencher o formulário no site da Edutec.\n\n` +
-        `Meu nome: ${formData.nome}\n` +
-        `E-mail: ${formData.email}\n` +
-        `Telefone/WhatsApp: ${formData.telefone}\n` +
-        `Curso de interesse: ${formData.curso}\n` +
-        `Ensino Médio completo? ${formData.graduation}\n` +
-        `Tempo de atuação na área: ${formData.timeActuation}\n\n` +
-        `Gostaria de saber mais sobre o curso, valores e o processo de certificação rápida!`
-      )
-
-      // Abre o WhatsApp imediatamente (usuário inicia a conversa)
-      const whatsappUrl = `https://wa.me/${consultor.whatsapp}?text=${mensagemWhats}`
-      window.open(whatsappUrl, '_blank')
-
-      //  Pequeno delay para o usuário ter tempo de ver/interagir com o WhatsApp
-      await new Promise(resolve => setTimeout(resolve, 2000))
-
+    
       //  Envia os dados para a planilha, incluindo o consultor atribuído
       const payload = {
         form_type: 'alunos_modal',
