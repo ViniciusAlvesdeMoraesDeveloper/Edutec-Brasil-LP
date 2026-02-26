@@ -95,23 +95,6 @@ export default function ContactForm() {
     "Outro (especifique no contato)",
   ].sort()
 
-
-  const consultores = [
-    { nome: "Camille Lopes", whatsapp: "5531973123670" },
-    { nome: "Luana Guedes", whatsapp: "5531982642835" },
-    { nome: "Hyago Henrique", whatsapp: "5531973123734" },
-    { nome: "Laura Perez", whatsapp: "5531982665400" },
-  ]
-
-  // Função para escolher o próximo consultor na fila (rodízio)
-  const getNextConsultor = () => {
-    const lastIndexStr = localStorage.getItem('lastConsultorIndex')
-    const lastIndex = lastIndexStr ? parseInt(lastIndexStr, 10) : -1
-    const nextIndex = (lastIndex + 1) % consultores.length
-    localStorage.setItem('lastConsultorIndex', nextIndex.toString())
-    return consultores[nextIndex]
-  }
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
 
@@ -166,10 +149,7 @@ export default function ContactForm() {
     setEnviando(true)
 
     try {
-      //  Escolhe o próximo consultor da fila
-      const consultor = getNextConsultor()
-    
-      //  Envia os dados para a planilha, incluindo o consultor atribuído
+      // Payload sem consultor – o script atribui globalmente
       const payload = {
         form_type: 'alunos_modal',
         name: formData.nome,
@@ -178,34 +158,39 @@ export default function ContactForm() {
         curso: formData.curso,
         graduation: formData.graduation,
         timeActuation: formData.timeActuation,
-        consultor: consultor.nome,
         source: 'next_form',
         pageUrl: typeof window !== 'undefined' ? window.location.href : '',
         userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
       }
 
+      // Envia para o Apps Script (que atribui o consultor)
       const response = await fetch(
         'https://script.google.com/macros/s/AKfycbwdMwlI0O23wyJCSAHsqzy2sshU2O1pvoutR9JDLR3TpCjIR9r-Y5d4GHjFF1CosklzKA/exec',
         {
           method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         }
       )
 
+      const result = await response.json()
+
       if (response.ok) {
-        // Evento GA4 de sucesso
+        // Salva o consultor retornado no localStorage para a página de obrigado usar
+        localStorage.setItem('assignedConsultor', result.consultor || '')
+
+        // Evento GA4
         if (typeof window !== 'undefined' && window.gtag) {
           window.gtag('event', 'form_submit_success', {
             event_category: 'Lead',
             event_label: 'Formulário Contato',
             value: 1,
             curso: formData.curso,
-            consultor: consultor.nome,
+            consultor: result.consultor,
           })
         }
 
-        // Redireciona para página de agradecimento
+        // Redireciona para agradecimento
         window.location.href = '/obrigado'
       } else {
         setErro('Erro ao registrar dados. Tente novamente.')

@@ -9,14 +9,12 @@ export default function Obrigado() {
       const lastIndexStr = localStorage.getItem('lastConsultorIndex')
       const lastIndex = lastIndexStr ? parseInt(lastIndexStr, 10) : 0
 
-
       const consultores = [
         { nome: "Camille Lopes", whatsapp: "5531973123670" },
         { nome: "Luana Guedes", whatsapp: "5531982642835" },
         { nome: "Hyago Henrique", whatsapp: "5531973123734" },
         { nome: "Laura Perez", whatsapp: "5531982665400" },
       ]
-
 
       const consultor = consultores[lastIndex]
 
@@ -31,27 +29,26 @@ export default function Obrigado() {
       window.location.href = `https://wa.me/${consultor.whatsapp}?text=${mensagemWhats}`
     }, 10000)
 
-
     return () => clearTimeout(timer)
   }, [])
 
   return (
     <>
-      {/* Google Tag Manager - Script principal no <head> */}
+      {/* Google Tag Manager - Novo ID Atualizado */}
       <Script id="gtm-script" strategy="afterInteractive">
         {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-M83XC5D3');
+          })(window,document,'script','dataLayer','GTM-NCB9R27Q');
         `}
       </Script>
 
-      {/* Google Tag Manager (noscript) - versão sem JavaScript, logo no body */}
+      {/* Google Tag Manager (noscript) - Novo ID Atualizado */}
       <noscript>
         <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-M83XC5D3"
+          src="https://www.googletagmanager.com/ns.html?id=GTM-NCB9R27Q"
           height="0"
           width="0"
           style={{ display: 'none', visibility: 'hidden' }}
@@ -84,10 +81,6 @@ export default function Obrigado() {
               Se não abrir automaticamente, verifique seu WhatsApp (inclusive "Solicitações de mensagem" ou spam).
             </p>
           </div>
-
-          <p className="text-lg text-gray-600 mb-10">
-            Enquanto isso, você pode voltar para a página inicial. Em breve nosso consultor entra em contato para conversarmos sobre os cursos e opções disponíveis.
-          </p>
 
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
             <a
