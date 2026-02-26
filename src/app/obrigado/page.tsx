@@ -45,7 +45,7 @@ export default function Obrigado() {
         `}
       </Script>
 
-      {/* Google Tag Manager (noscript) - Novo ID Atualizado */}
+      
       <noscript>
         <iframe
           src="https://www.googletagmanager.com/ns.html?id=GTM-NCB9R27Q"
