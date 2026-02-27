@@ -158,8 +158,8 @@ export default function ContactForm() {
         graduation: formData.graduation,
         timeActuation: formData.timeActuation,
         source: 'next_form',
-        pageUrl: typeof window !== 'undefined' ? window.location.href : '',
-        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+        pageUrl: window.location.href,
+        userAgent: navigator.userAgent,
       }
 
       // Log para debug: veja no console o que está sendo enviado
@@ -185,9 +185,12 @@ export default function ContactForm() {
       const result = await response.json()
 
       if (result.success) {
-        // Salva o consultor retornado (para página de obrigado, se quiser)
-        localStorage.setItem('assignedConsultor', result.consultor || '')
 
+        if (response.ok) {
+          const result = await response.json();
+          localStorage.setItem('assignedConsultor', result.consultor || '');
+          window.location.href = '/obrigado';
+        }
         // Evento GA4
         if (typeof window !== 'undefined' && window.gtag) {
           window.gtag('event', 'form_submit_success', {
