@@ -182,7 +182,6 @@ export default function ContactForm() {
       const result = await response.json()
 
       if (result.success) {
-<<<<<<< HEAD
         // Salva o consultor retornado (para página de obrigado, se quiser)
         localStorage.setItem(
           'assignedConsultor',
@@ -190,8 +189,6 @@ export default function ContactForm() {
             ? JSON.stringify(result.consultor)
             : String(result.consultor || '')
         )
-=======
->>>>>>> refs/remotes/origin/main
 
         if (response.ok) {
           const result = await response.json();
