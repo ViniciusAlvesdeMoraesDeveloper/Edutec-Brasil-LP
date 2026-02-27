@@ -166,7 +166,7 @@ export default function ContactForm() {
       console.log('Payload enviado:', payload)
 
       const response = await fetch(
-        'https://script.google.com/macros/s/AKfycbx5_XqVri88o-cckzHnU2U3LVsCyQ5nxsaiXIhczcknbXdYnwBDLEfayFKljg0fSZoRvA/exec',
+        'https://script.google.com/macros/s/AKfycbwdMwlI0O23wyJCSAHsqzy2sshU2O1pvoutR9JDLR3TpCjIR9r-Y5d4GHjFF1CosklzKA/exec',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' }, // Mudança chave para funcionar
