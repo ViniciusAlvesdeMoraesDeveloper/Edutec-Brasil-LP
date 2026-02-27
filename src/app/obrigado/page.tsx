@@ -5,10 +5,6 @@ import { useEffect } from 'react'
 export default function Obrigado() {
   useEffect(() => {
     const timer = setTimeout(() => {
-
-      const lastIndexStr = localStorage.getItem('lastConsultorIndex')
-      const lastIndex = lastIndexStr ? parseInt(lastIndexStr, 10) : 0
-
       const consultores = [
         { nome: "Camille Lopes", whatsapp: "5531973123670" },
         { nome: "Luana Guedes", whatsapp: "5531982642835" },
@@ -16,7 +12,19 @@ export default function Obrigado() {
         { nome: "Laura Perez", whatsapp: "5531982665400" },
       ]
 
-      const consultor = consultores[lastIndex]
+      let consultor = consultores[0]
+      const stored = localStorage.getItem('assignedConsultor')
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored)
+          if (parsed?.nome && parsed?.whatsapp) {
+            consultor = parsed
+          }
+        } catch {
+          const found = consultores.find((c) => c.nome === stored)
+          if (found) consultor = found
+        }
+      }
 
       // Mensagem simples para o WhatsApp
       const mensagemWhats = encodeURIComponent(

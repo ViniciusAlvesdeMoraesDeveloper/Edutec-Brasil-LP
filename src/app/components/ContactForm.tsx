@@ -182,7 +182,7 @@ export default function ContactForm() {
       const result = await response.json()
 
       if (result.success) {
-        // Salva o consultor retornado (para página de obrigado, se quiser)
+        // Salva o consultor retornado (para página de obrigado)
         localStorage.setItem(
           'assignedConsultor',
           typeof result.consultor === 'object'
@@ -190,11 +190,6 @@ export default function ContactForm() {
             : String(result.consultor || '')
         )
 
-        if (response.ok) {
-          const result = await response.json();
-          localStorage.setItem('assignedConsultor', result.consultor || '');
-          window.location.href = '/obrigado';
-        }
         // Evento GA4
         if (typeof window !== 'undefined' && window.gtag) {
           window.gtag('event', 'form_submit_success', {
