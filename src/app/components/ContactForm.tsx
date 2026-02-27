@@ -165,14 +165,11 @@ export default function ContactForm() {
       // Log para debug: veja no console o que está sendo enviado
       console.log('Payload enviado:', payload)
 
-      const response = await fetch(
-        'https://script.google.com/macros/s/AKfycbwdMwlI0O23wyJCSAHsqzy2sshU2O1pvoutR9JDLR3TpCjIR9r-Y5d4GHjFF1CosklzKA/exec',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' }, // Mudança chave para funcionar
-          body: JSON.stringify(payload),
-        }
-      )
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
 
       console.log('Status da resposta:', response.status, response.statusText)
 
@@ -186,7 +183,12 @@ export default function ContactForm() {
 
       if (result.success) {
         // Salva o consultor retornado (para página de obrigado, se quiser)
-        localStorage.setItem('assignedConsultor', result.consultor || '')
+        localStorage.setItem(
+          'assignedConsultor',
+          typeof result.consultor === 'object'
+            ? JSON.stringify(result.consultor)
+            : String(result.consultor || '')
+        )
 
         // Evento GA4
         if (typeof window !== 'undefined' && window.gtag) {
