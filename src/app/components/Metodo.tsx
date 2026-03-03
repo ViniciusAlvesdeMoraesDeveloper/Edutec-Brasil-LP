@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react' 
+import { useState } from 'react'
 
 export default function HowItWorks() {
     const steps = [
@@ -20,7 +20,7 @@ export default function HowItWorks() {
         {
             number: "3",
             title: "Diploma em Mãos",
-            description: "Após aprovação, emitimos seu diploma técnico reconhecido pelo MEC/SISTEC em tempo recorde (prazo médio de 7 a 30 dias). Registro automático no sistema oficial, validade nacional e possibilidade de registro em conselhos de classe. Receba digital ou impresso – pronto para usar na carreira!",
+            description: "Após aprovação, emitimos seu diploma técnico reconhecido pelo MEC/SISTEC em tempo recorde (prazo de 48 horas). Registro automático no sistema oficial, validade nacional e possibilidade de registro em conselhos de classe. Receba digital ou impresso – pronto para usar na carreira!",
             icon: "🎓",
             color: "bg-yellow-100 text-yellow-800"
         }
@@ -35,7 +35,7 @@ export default function HowItWorks() {
                         O Método: Simples, Rápido e 100% Online
                     </h2>
                     <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto font-medium">
-                        Conquiste seu diploma técnico em apenas <span className="text-green-600 font-bold">3 etapas claras</span>. 
+                        Conquiste seu diploma técnico em apenas <span className="text-green-600 font-bold">3 etapas claras</span>.
                         Sem complicação, sem burocracia excessiva – projetado para quem já tem experiência e quer formalizar rápido.
                     </p>
                 </div>

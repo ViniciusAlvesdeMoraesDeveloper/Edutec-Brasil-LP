@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from 'react' 
+import { useEffect, useRef } from 'react'
 
 export default function QuantitativeProof() {
     const stats = [
@@ -42,7 +42,7 @@ export default function QuantitativeProof() {
                         Resultados Reais: O Retorno do Seu Investimento
                     </h2>
                     <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto font-medium">
-                        Veja os números que provam: fazer um curso técnico na Edutec não é custo – é o melhor investimento na sua carreira. 
+                        Veja os números que provam: fazer um curso técnico na Edutec não é custo – é o melhor investimento na sua carreira.
                         <span className="text-green-700 font-bold"> Ganho lógico e comprovado.</span>
                     </p>
                     <p className="text-lg text-gray-600 mt-4">
@@ -57,20 +57,20 @@ export default function QuantitativeProof() {
                             key={index}
                             className="bg-white rounded-2xl shadow-2xl p-8 md:p-10 text-center border border-green-100 hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-4"
                         >
-                            
+
                             <div className="text-6xl md:text-7xl mb-6">{stat.icon}</div>
 
-                           
+
                             <div className={`text-5xl md:text-4xl font-extrabold mb-4 ${stat.color}`}>
                                 {stat.number}
                             </div>
 
-                            
+
                             <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
                                 {stat.title}
                             </h3>
 
-                            
+
                             <p className="text-lg text-gray-700 leading-relaxed">
                                 {stat.description}
                             </p>
@@ -91,7 +91,7 @@ export default function QuantitativeProof() {
                         href="#contato"
                         className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold text-lg md:text-xl px-12 py-6 rounded-xl shadow-2xl transform hover:scale-105 transition-all"
                     >
-                        Quero Meu Aumento Salarial → Matricule-se Agora!
+                        Matricule-se Agora!
                     </a>
 
                     <p className="mt-8 text-sm text-gray-500">
