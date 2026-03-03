@@ -32,7 +32,16 @@ export default function ContactForm() {
   const [erro, setErro] = useState<string | null>(null)
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$|^\d{10,11}$/
+  const telefoneRegex = /^\+55\s?\(\d{2}\)\s?\d{5}-\d{4}$/
+
+  const formatPhoneMask = (value: string) => {
+    const digits = value.replace(/\D/g, '').slice(0, 12)
+    if (digits.length === 0) return ''
+    let formatted = '+55 (' + digits.slice(0, 2) + ') '
+    if (digits.length > 2) formatted += digits.slice(2, 7)
+    if (digits.length > 7) formatted += '-' + digits.slice(7, 12)
+    return formatted
+  }
 
   const cursosDisponiveis = [
     "Técnico em Administração",
@@ -99,10 +108,11 @@ export default function ContactForm() {
     const { name, value } = e.target
 
     if (name === 'telefone') {
-      const apenasNums = value.replace(/[^\d()-\s]/g, '')
-      if (apenasNums.length <= 15) {
-        setFormData((prev) => ({ ...prev, [name]: apenasNums }))
-      }
+      let digits = value.replace(/\D/g, '').slice(0, 14)
+      if (digits.startsWith('55')) digits = digits.slice(2, 14)
+      digits = digits.slice(0, 12)
+      const formatted = formatPhoneMask(digits)
+      setFormData((prev) => ({ ...prev, [name]: formatted }))
       return
     }
 
@@ -130,7 +140,7 @@ export default function ContactForm() {
       return
     }
     if (!telefoneRegex.test(formData.telefone)) {
-      setErro('Telefone inválido. Use (31) 99999-9999.')
+      setErro('Telefone inválido. Use o formato +55 (99) 99999-9999.')
       return
     }
     if (!formData.curso) {
@@ -281,9 +291,9 @@ export default function ContactForm() {
                   value={formData.telefone}
                   onChange={handleChange}
                   required
-                  maxLength={15}
+                  maxLength={19}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-black"
-                  placeholder="(31) 99999-9999"
+                  placeholder="+55 (99) 99999-9999"
                 />
               </div>
 
