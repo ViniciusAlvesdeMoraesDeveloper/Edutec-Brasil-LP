@@ -44,11 +44,11 @@ export default function ContactForm() {
   }
 
   const cursosDisponiveis = [
+  // ÁREA DA SAÚDE
   "Técnico em Agente Comunitário de Saúde",
   "Técnico em Análises Clínicas",
   "Técnico em Cuidados de Idosos",
   "Técnico em Equipamentos Biomédicos",
-  "Técnico em Enfermagem",
   "Técnico em Estética",
   "Técnico em Farmácia",
   "Técnico em Gerência em Saúde",
@@ -56,6 +56,9 @@ export default function ContactForm() {
   "Técnico em Radiologia",
   "Técnico em Saúde Bucal",
   "Técnico em Veterinária",
+  "Técnico em Enfermagem",  
+
+  // ÁREA DE ENGENHARIA E MANUTENÇÃO
   "Técnico em Automação Industrial",
   "Técnico em Eletromecânica",
   "Técnico em Eletrônica",
@@ -67,8 +70,9 @@ export default function ContactForm() {
   "Técnico em Química",
   "Técnico em Refrigeração e Climatização",
   "Técnico em Soldagem",
+
+  // ÁREA DE ADMINISTRAÇÃO E GESTÃO
   "Técnico em Administração",
-  "Técnico em Contabilidade",
   "Técnico em Logística",
   "Técnico em Marketing",
   "Técnico em Qualidade",
@@ -79,17 +83,23 @@ export default function ContactForm() {
   "Técnico em Transações Imobiliárias",
   "Técnico em Vendas",
   "Técnico em Eventos",
+
+  // ÁREA DE CONSTRUÇÃO E INFRAESTRUTURA
   "Técnico em Agrimensura",
   "Técnico em Edificações",
   "Técnico em Mineração",
   "Técnico em Prevenção e Controle de Incêndios",
   "Técnico em Defesa Civil",
   "Técnico em Trânsito",
+
+  // ÁREA DO MEIO AMBIENTE E AGROPECUÁRIA
   "Técnico em Agricultura",
   "Técnico em Agroindústria",
   "Técnico em Agropecuária",
   "Técnico em Aquicultura",
   "Técnico em Meio Ambiente",
+
+  // ÁREA DE TECNOLOGIA E INFORMÁTICA
   "Técnico em Biotecnologia",
   "Técnico em Design Gráfico",
   "Técnico em Desenvolvimento de Sistemas",
@@ -97,12 +107,16 @@ export default function ContactForm() {
   "Técnico em Redes de Computadores",
   "Técnico em Sistemas de Energia Renovável",
   "Técnico em Telecomunicações",
+
+  // ÁREA DE SERVIÇOS
   "Técnico em Gastronomia",
   "Técnico em Óptica",
   "Técnico em Design de Interiores",
   "Técnico em Guia de Turismo",
+
+  // Final da lista
   "Outro (especifique no contato)"
-].sort()
+].sort();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
