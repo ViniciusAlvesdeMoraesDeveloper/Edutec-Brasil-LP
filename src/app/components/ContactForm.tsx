@@ -53,7 +53,6 @@ export default function ContactForm() {
   "Técnico em Farmácia",
   "Técnico em Gerência em Saúde",
   "Técnico em Nutrição e Dietética",
-  "Técnico em Radiologia",
   "Técnico em Saúde Bucal",
   "Técnico em Veterinária",
   "Técnico em Enfermagem",  
@@ -73,6 +72,7 @@ export default function ContactForm() {
 
   // ÁREA DE ADMINISTRAÇÃO E GESTÃO
   "Técnico em Administração",
+  "Técnico em Contabilidade",
   "Técnico em Logística",
   "Técnico em Marketing",
   "Técnico em Qualidade",
