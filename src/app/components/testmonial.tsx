@@ -87,7 +87,7 @@ export default function Testimonials() {
                         Alunos que Conquistaram o Diploma Rápido e Transformaram a Carreira
                     </h2>
                     <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto font-medium">
-                        Veja como pessoas como você formalizaram a experiência, ganharam reconhecimento oficial e aceleraram o sucesso profissional com a Edutec.
+                        Veja como pessoas como você formalizaram a experiência, ganharam reconhecimento oficial e aceleraram o sucesso profissional com a Edutec
                     </p>
                 </div>
 
